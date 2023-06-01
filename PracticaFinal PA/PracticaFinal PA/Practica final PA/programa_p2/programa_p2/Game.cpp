@@ -1,5 +1,7 @@
 #include "Game.h"
 #include "SceneMenu.h"
+//#include "SceneLevel.h"
+#include "SceneCreditos.h"
 #include "Scene.h"
 #include <iostream>
 #include <cstdlib> // para rand() y srand()
@@ -34,6 +36,17 @@ void Game::Init()
 {
 	SceneMenu* sceneMenu = new SceneMenu();
 	sceneMenu->Init();
+	this->scenes.push_back(sceneMenu);
+	this->activeScene = this->scenes[0];
+
+	SceneCreditos* sceneFinal = new SceneCreditos();
+	sceneFinal->Init();
+	this->scenes.push_back(sceneFinal);
+
+
+
+	
+	//activeScene = sceneMenu;
 	/*
 	SceneLevel* sceneLevel = new SceneLevel();
 	sceneLevel->Init();
@@ -41,14 +54,12 @@ void Game::Init()
 	sceneGameSceneGameOver->Init();
 	*/
 	
-	/**
+	/**/
 	cout << "GAME INIT..." << endl;
-
 	srand(time(NULL));
 
 	
 
-	
 	/**
 	// // // //Menú inicial
 	Scene* scene0 = new Scene();
@@ -183,6 +194,9 @@ void Game::Init()
 	//*/
 
 
+
+
+
 	/**
 	// // // //Primera escena
 	std::cout << "Carga de la primera escena" << std::endl;
@@ -251,6 +265,9 @@ void Game::Init()
 	scene1->AddGameObject(personaje);
 	scene1->AddPersonaje(personaje);
 	//*/
+
+
+
 
 
 	/**
@@ -324,6 +341,9 @@ void Game::Init()
 	//*/
 
 
+
+
+
 	/**
 	// // // //Tercera escena
 	std::cout << "Carga de la tercera escena" << std::endl;
@@ -393,6 +413,9 @@ void Game::Init()
 	scene3->AddGameObject(personaje);
 	scene3->AddPersonaje(personaje);
 	//*/
+
+
+
 
 
 	/**
@@ -467,7 +490,9 @@ void Game::Init()
 	meta->SetWidth(0.2);
 	scene4->AddGameObject(meta);
 	scene4->SetMeta(meta);
+	//*/
 
+	/**
 	// GUARDADO DE ESCENAS
 	std::cout << "Subida de escenas" << std::endl;
 	this->scenes.push_back(scene0);

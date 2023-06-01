@@ -147,6 +147,7 @@
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="programa_p2.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneCreditos.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="SceneLevel.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneCreditos.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneLevel.h" />
     <ClInclude Include="SceneMenu.h" />

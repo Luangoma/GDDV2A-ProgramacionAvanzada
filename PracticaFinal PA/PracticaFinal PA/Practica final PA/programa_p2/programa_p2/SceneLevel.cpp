@@ -5,6 +5,7 @@
 void SceneLevel::Init()
 {
     Scene::Init();
+
     //El resto
     /**
     // // // //Primera escena
@@ -73,7 +74,6 @@ void SceneLevel::Init()
 	personaje->PaintColor(Color(0.2, 0.3, 0.8));
 	scene1->AddGameObject(personaje);
 	scene1->AddPersonaje(personaje);
-
     //*/
 }
 

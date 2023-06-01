@@ -20,11 +20,11 @@ protected:
 
 	Camera camera;
 	vector<Solid*> gameObjects;
-	float desplazamiento;
 	Vector3D boundary;
+	float desplazamiento;
 	
 	vector<Solid*> trenes; // Trenes
-	vector<Solid*> viasTren; // 
+	vector<Model*> arrayVias; // Vias
 
 	ModelLoader* loader;
 	ModelLoader* loaderVias;
@@ -34,6 +34,12 @@ protected:
 	ModelLoader* loaderPersonaje;
 	Solid* personajeActivo;
 	Model* personaje;
+	Model* viasTren;
+	Model* tren1M;
+	Model* tren2M;
+	Model* tren3M;
+	
+	
 
 public:
 	Scene(Vector3D boundaryArgument = Vector3D(10, 8, 10), bool drawVertexesArgument = false, bool drawBoxArgument = true) : 
@@ -52,7 +58,8 @@ public:
 	//SETTERS Y GETTERS DE LA CAMARA.
 	inline Camera GetCamera() const { return this->camera; }
 	inline void SetCamera(const Camera& cameraToSet) { this->camera = cameraToSet; }
-
+	
+	//OTROS METODOS
 	inline void AddGameObject(Solid* gameObject) { this->gameObjects.push_back(gameObject); }
 	inline void AddTren(Solid* tren) { this->trenes.push_back(tren); }
 	inline void AddPersonaje(Solid* personaje) { this->personajeActivo=personaje; }

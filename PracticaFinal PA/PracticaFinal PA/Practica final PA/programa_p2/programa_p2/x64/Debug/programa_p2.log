@@ -1,66 +1,11 @@
 ﻿  Game.cpp
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Game.h(17,29): warning C4244: 'inicializando': conversión de 'double' a 'const long'; posible pérdida de datos
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Game.cpp(499,45): warning C4244: '=': conversión de '_Rep' a 'long'; posible pérdida de datos
+C:\Users\Monica\Documents\GitHub\PA\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\Monica\Documents\GitHub\PA\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\Monica\Documents\GitHub\PA\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Game.h(17,29): warning C4244: 'inicializando': conversión de 'double' a 'const long'; posible pérdida de datos
+C:\Users\Monica\Documents\GitHub\PA\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Game.cpp(59,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\Monica\Documents\GitHub\PA\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Game.cpp(524,45): warning C4244: '=': conversión de '_Rep' a 'long'; posible pérdida de datos
           with
           [
               _Rep=__int64
           ]
-  Scene.cpp
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Scene.cpp(14,106): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Scene.cpp(74,10): warning C4101: 'meta': variable local sin referencia
-  SceneGameOver.cpp
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-  SceneLevel.cpp
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(112,17): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(129,65): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(136,34): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(137,34): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(141,34): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(142,34): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(146,34): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(147,34): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(151,34): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(152,34): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(173,52): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(177,52): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(182,51): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(289,59): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(294,58): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(299,59): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(304,58): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(309,59): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(314,58): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(319,59): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneLevel.cpp(324,58): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-  SceneMenu.cpp
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(21,42): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(29,43): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(38,45): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(40,40): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(46,45): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(48,42): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(56,41): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(64,43): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(108,39): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(109,22): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(117,39): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(120,21): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
-  programa_p2.cpp
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Cuboid.h(12): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\Game.h(17,29): warning C4244: 'inicializando': conversión de 'double' a 'const long'; posible pérdida de datos
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\programa_p2.cpp(16,25): warning C4305: 'inicializando': truncamiento de 'double' a 'GLclampf'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\programa_p2.cpp(17,27): warning C4305: 'inicializando': truncamiento de 'double' a 'GLclampf'
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\programa_p2.cpp(18,26): warning C4305: 'inicializando': truncamiento de 'double' a 'GLclampf'
-  Generando código...
-C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\programa_p2\SceneMenu.cpp(124): warning C4717: 'SceneMenu::Init': recursiva para todas las rutas de acceso de control; la función provocará el desbordamiento de la pila en tiempo de ejecución
-  programa_p2.vcxproj -> C:\Users\Monica\Desktop\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\x64\Debug\programa_p2.exe
+  programa_p2.vcxproj -> C:\Users\Monica\Documents\GitHub\PA\PracticaFinal PA\PracticaFinal PA\Practica final PA\programa_p2\x64\Debug\programa_p2.exe
