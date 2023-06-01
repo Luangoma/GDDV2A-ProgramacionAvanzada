@@ -7,15 +7,6 @@
 
 void Scene::Init()
 {
-	loaderVias = new ModelLoader();
-	loaderLvl1 = new ModelLoader();
-	loaderLvl2 = new ModelLoader();
-	loaderLvl3 = new ModelLoader();
-	loaderPersonaje = new ModelLoader();
-	personaje = new Model();
-	tren1M = new Model();
-	tren2M = new Model();
-	tren3M = new Model();
 	camera.SetPosition(Vector3D(this->boundary.GetX() / 2, this->boundary.GetY() / 2, this->boundary.GetZ() * 1.8));
 
 	if (this->GetDrawVertexes())
@@ -73,54 +64,65 @@ void Scene::Init()
 
 	// Carga de recursos base
 	// Carga del modelo 'viastren' (generico para los niveles)
+	loaderVias = new ModelLoader();
 	loaderVias->LoadModel("..\\..\\3dModels\\viasTren.obj");
 	std::cout<<"Carga de viasTren"<<std::endl;
 
 	// Carga del modelo 'TrenLvl1' (tren del nivel 1)
 	// Model* trenLvl1 = new Model();
+	loaderLvl1 = new ModelLoader();
 	loaderLvl1->LoadModel("..\\..\\3dModels\\TrenLvl1.obj");
 	std::cout<<"Carga de TrenLvl1"<<std::endl;
 
 	// Carga del modelo 'TrenLvl2' (tren del nivel 2)
 	// Model* trenLvl2 = new Model();
+	loaderLvl2 = new ModelLoader();
 	loaderLvl2->LoadModel("..\\..\\3dModels\\TrenLvl2.obj");
 	std::cout<<"Carga de TrenLvl2"<<std::endl;
 
 	// Carga del modelo 'TrenLvl3' (tren del nivel 3)
 	// Model* trenLvl3 = new Model();
+	loaderLvl3 = new ModelLoader();
 	loaderLvl3->LoadModel("..\\..\\3dModels\\TrenLvl3.obj");
 	std::cout<<"Carga de TrenLvl3"<<std::endl;
 
 	// Carga del modelo 'Cop' (Jugador)
 	// Model* personaje = new Model();
+	loaderPersonaje = new ModelLoader();
 	loaderPersonaje->LoadModel("..\\..\\3dModels\\Cop.obj");
 	std::cout<<"Carga de Cop"<<std::endl<<std::endl;
-	*personaje = loaderPersonaje->GetModel();
 
+	
 	// Tren del nivel 1
 	//Model* tren1M = new Model();
+	tren1M = new Model();
 	*tren1M = loaderLvl1->GetModel();
 	tren1M->SetPosition(Vector3D(15.0, 1.7, 0.0));
 	tren1M->SetOrientation(Vector3D(0.0, 0.0, 0.0));
 	tren1M->PaintColor(Color(0.1, 0.1, 0.1));
 	AddTren(tren1M);
 	AddGameObject(tren1M);
+	
 	// Tren del nivel 2
 	//Model* tren2M = new Model();
+	tren2M = new Model();
 	*tren2M = loaderLvl2->GetModel();
 	tren2M->SetPosition(Vector3D(25.0, 1.1, 5.0));
 	tren2M->SetOrientation(Vector3D(0.0, 0.0, 0.0));
 	tren2M->PaintColor(Color(0.73, 0.56, 0.1));
 	AddTren(tren2M);
 	AddGameObject(tren2M);
+	
 	// Tren del nivel 3
 	//Model* tren3M = new Model();
+	tren3M = new Model();
 	*tren3M = loaderLvl3->GetModel();
 	tren3M->SetPosition(Vector3D(30, 1.0, 10.0));
 	tren3M->SetOrientation(Vector3D(0.0, 0.0, 0.0));
 	tren3M->PaintColor(Color(0.4, 0.42, 0.4));
 	AddTren(tren3M);
 	AddGameObject(tren3M);
+
 	// Personaje
 	personaje = new Model();
 	*personaje = loaderPersonaje->GetModel();
@@ -130,13 +132,8 @@ void Scene::Init()
 	AddGameObject(personaje);
 	AddPersonaje(personaje);
 
-	//Liberar los model loaders.
-	//delete loader;
-	//delete loaderLvl1;
-	//delete loaderLvl2;
-	//delete loaderLvl3;
-	//delete loaderPersonaje;
-	//delete loaderVias;
+	// Vias
+	viasTren = new Model();
 }
 	
 void Scene::Update(const float& timeIncrement)

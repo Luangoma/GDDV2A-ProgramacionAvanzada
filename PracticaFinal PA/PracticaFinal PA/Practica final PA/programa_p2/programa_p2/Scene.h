@@ -24,7 +24,7 @@ protected:
 	float desplazamiento;
 	
 	vector<Solid*> trenes; // Trenes
-	vector<Model*> arrayVias; // Vias
+	vector<Solid*> arrayVias; // Vias
 
 	ModelLoader* loader;
 	ModelLoader* loaderVias;

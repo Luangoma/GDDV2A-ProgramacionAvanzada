@@ -16,7 +16,13 @@ void SceneCreditos::Init(){
 	// // // CREDITOS
 	for (int i = 0; i < 3; i++) // Creamos las vias y las añadimos
 	{
+		*viasTren = loaderVias->GetModel();
+		viasTren->SetPosition(Vector3D(viasTren->GetPosition().GetX() + 50, viasTren->GetPosition().GetY(), viasTren->GetPosition().GetZ() + desplazamiento));
+		viasTren->PaintColor(Color(0.3, 0.3, 0.3));
+		arrayVias.push_back(viasTren);
+		desplazamiento += 5.0;
 		AddGameObject(arrayVias[i]);
+		viasTren = new Model();
 	}
 	// Tren del nivel 1
     AddTren(tren1M);
@@ -60,8 +66,6 @@ void SceneCreditos::Init(){
 	texto3->SetPosition(Vector3D(-14, 0, desplazamiento));
 	texto3->SetColor(Color(1, 1, 1));
 	AddGameObject(texto3);
-	desplazamiento += 5;
-	
 }
 void SceneCreditos::Update(const float& timeIncrement){
 
