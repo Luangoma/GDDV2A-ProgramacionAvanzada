@@ -1,9 +1,9 @@
+#include "Text.h"
 #include "Scene.h"
 #include "ModelLoader.h"
 #include <cstdlib> // para rand() y srand()
 #include <ctime>   // para time()
 #include <iostream>
-#include "Text.h"
 
 void Scene::Init()
 {
@@ -92,7 +92,7 @@ void Scene::Init()
 	loaderPersonaje->LoadModel("..\\..\\3dModels\\Cop.obj");
 	std::cout<<"Carga de Cop"<<std::endl<<std::endl;
 
-	
+	/**
 	// Tren del nivel 1
 	//Model* tren1M = new Model();
 	tren1M = new Model();
@@ -102,7 +102,6 @@ void Scene::Init()
 	tren1M->PaintColor(Color(0.1, 0.1, 0.1));
 	AddTren(tren1M);
 	AddGameObject(tren1M);
-	
 	// Tren del nivel 2
 	//Model* tren2M = new Model();
 	tren2M = new Model();
@@ -112,7 +111,6 @@ void Scene::Init()
 	tren2M->PaintColor(Color(0.73, 0.56, 0.1));
 	AddTren(tren2M);
 	AddGameObject(tren2M);
-	
 	// Tren del nivel 3
 	//Model* tren3M = new Model();
 	tren3M = new Model();
@@ -122,6 +120,7 @@ void Scene::Init()
 	tren3M->PaintColor(Color(0.4, 0.42, 0.4));
 	AddTren(tren3M);
 	AddGameObject(tren3M);
+	//*/
 
 	// Personaje
 	personaje = new Model();

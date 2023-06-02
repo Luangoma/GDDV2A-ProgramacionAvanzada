@@ -3,6 +3,7 @@
 
 void SceneGameOver::Init(){
     Scene::Init();
+
 }
 void SceneGameOver::Update(const float& timeIncrement){
 

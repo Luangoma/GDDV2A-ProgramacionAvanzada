@@ -5,23 +5,21 @@
 #include "ModelLoader.h"
 #include "Model.h"
 #include "Cuboid.h"
-
+#include <iostream>
 class SceneLevel : public Scene
 {
 private:
-    
 
 	Cuboid* meta;
 	bool activo;
-
-	
     int nivel;
-
 	void checkBoundary();
+
 public:
 
-    SceneLevel(bool activoArgument = true) 
-        : Scene(), activo(activoArgument) {}
+    SceneLevel(bool activoArgument = true, int nivelToSet = 1) : Scene(), activo(activoArgument), nivel(nivelToSet) {
+        std::cout << "Constructor de nivel, nivel = " << nivel << std::endl;
+    }
 
     void Init();
 

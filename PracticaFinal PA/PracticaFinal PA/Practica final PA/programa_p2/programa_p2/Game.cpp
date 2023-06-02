@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "SceneMenu.h"
-//#include "SceneLevel.h"
+#include "SceneLevel.h"
+#include "SceneGameOver.h"
 #include "SceneCreditos.h"
 #include "Scene.h"
 #include <iostream>
@@ -34,29 +35,38 @@ void Game::ProcessMouseClick(int button, int state, int x, int y)
 
 void Game::Init()
 {
+	//activeScene = sceneMenu;
+	cout << "GAME INIT..." << endl;
+	srand(time(NULL));
+
 	SceneMenu* sceneMenu = new SceneMenu();
 	sceneMenu->Init();
 	this->scenes.push_back(sceneMenu);
+
 	this->activeScene = this->scenes[0];
+
+	SceneLevel* sceneLevelNivel1 = new SceneLevel(true, 1);
+	sceneLevelNivel1->Init();
+	this->scenes.push_back(sceneLevelNivel1);
+
+	SceneLevel* sceneLevelNivel2 = new SceneLevel(true, 2);
+	sceneLevelNivel2->Init();
+	this->scenes.push_back(sceneLevelNivel2);
+
+	SceneLevel* sceneLevelNivel3 = new SceneLevel(true, 3);
+	sceneLevelNivel3->Init();
+	this->scenes.push_back(sceneLevelNivel3);
+
+	/**
+	SceneGameOver* sceneOver = new SceneGameOver();
+	sceneOver->Init();
+	this->scenes.push_back(sceneOver);
+	//*/
 
 	SceneCreditos* sceneFinal = new SceneCreditos();
 	sceneFinal->Init();
 	this->scenes.push_back(sceneFinal);
 
-
-
-	
-	//activeScene = sceneMenu;
-	/*
-	SceneLevel* sceneLevel = new SceneLevel();
-	sceneLevel->Init();
-	SceneGameOver* sceneGameSceneGameOver = new SceneGameOver();
-	sceneGameSceneGameOver->Init();
-	*/
-	
-	/**/
-	cout << "GAME INIT..." << endl;
-	srand(time(NULL));
 
 	
 

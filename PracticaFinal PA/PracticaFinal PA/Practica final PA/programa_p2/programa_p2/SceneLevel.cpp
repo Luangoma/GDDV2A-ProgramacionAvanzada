@@ -7,73 +7,89 @@ void SceneLevel::Init()
     Scene::Init();
 
     //El resto
-    /**
+    /**/
     // // // //Primera escena
-	std::cout << "Carga de la primera escena" << std::endl;
-	SceneLevel* scene1 = new SceneLevel();
-	scene1->SetDrawVertexes(false);
-	scene1->SetDrawBox(true);
-	scene1->Init();
-	scene1->SetBoundary(Vector3D(50, 50, 100));
-	scene1->SetNivel(1);
-	scene1->SetActivo(true);
+	std::cout << "Carga de la escena " << nivel << std::endl;
+	SetDrawVertexes(false);
+	SetDrawBox(true);
+	SetBoundary(Vector3D(50, 50, 100));
+	SetActivo(true);
 	// CAMARA EN CENITAL (60 grados)
-	Camera* camara1 = new Camera();
-	camara1->SetPosition(Vector3D(0, 4, 18));
-	camara1->SetOrientation(Vector3D(60.0, 0.0, 0.0));
-	scene1->SetCamera(*camara1);
+	Camera* camara = new Camera();
+	camara->SetPosition(Vector3D(0, 2+nivel*2, 18*nivel));
+	camara->SetOrientation(Vector3D(60.0, 0.0, 0.0));
+	SetCamera(*camara);
 	// CARGAR MODELOS
 	*viasTren = loaderVias->GetModel();
 	viasTren->SetPosition(Vector3D(0, 0, 0));
 	viasTren->PaintColor(Color(0.6, 0.3, 0.3));
-	// // //NIVEL FACIL -> 3 vias.
-	vector<Model*> arrayVias1;
-	const int easyMode = 3;
+
+	vector<Model*> arrayVias;
+	const int mode = 1 + (nivel * 2);
 	desplazamiento = 0.0;
-	for (int i = 0; i < easyMode; i++) // Creamos las vias y las añadimos
+	for (int i = 0; i < mode; i++) // Creamos las vias y las añadimos
 	{
 		viasTren = new Model();
 		*viasTren = loaderVias->GetModel();
 		viasTren->SetPosition(Vector3D(viasTren->GetPosition().GetX(), viasTren->GetPosition().GetY(), viasTren->GetPosition().GetZ() - desplazamiento));
 		viasTren->PaintColor(Color(0.3, 0.3, 0.3));
-		arrayVias1.push_back(viasTren);
+		arrayVias.push_back(viasTren);
 		desplazamiento += 7.0;
-		scene1->AddGameObject(arrayVias1[i]);
+		AddGameObject(arrayVias[i]);
+	}
+	for (int i = 0; i < mode; i++) // Creamos los trenes y los añadimos
+	{
+		// Posicion Inicial Aleatoria
+		float randomX = ((rand() % int(GetBoundary().GetX())) - int(GetBoundary().GetX() / 2));
+		//std::cout << (randomX) << std::endl;
+
+		tren1M = new Model();
+		if (nivel == 1)
+		{
+			*tren1M = loaderLvl1->GetModel();
+			tren1M->SetPosition(Vector3D(randomX, 1.7, -7.0 * i));
+			tren1M->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
+			tren1M->PaintColor(Color(0.1, 0.1, 0.1));
+			tren1M->SetSpeed(Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
+		}
+		else if (nivel == 2)
+		{
+			tren1M = new Model();
+			*tren1M = loaderLvl2->GetModel();
+			tren1M->SetPosition(Vector3D(randomX, 1.1, -7.0 * i));
+			tren1M->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
+			tren1M->PaintColor(Color(0.73, 0.56, 0.1));
+			tren1M->SetSpeed(Vector3D((i % 2 == 0) ? 0.3 : -0.3, 0.0, 0.0));
+		}
+		else
+		{
+			tren1M = new Model();
+			*tren1M = loaderLvl3->GetModel();
+			tren1M->SetPosition(Vector3D(randomX, 1, -7.0 * i));
+			tren1M->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
+			tren1M->PaintColor(Color(0.4, 0.4, 0.4));
+			tren1M->SetSpeed(Vector3D((i % 2 == 0) ? 1 : -1, 0.0, 0.0));
+		}
+
+		AddTren(tren1M);
+		AddGameObject(tren1M);
 	}
 	// Meta
 	meta = new Cuboid();
 	meta->SetPosition(Vector3D(0, 0, -desplazamiento));
 	meta->SetOrientation(Vector3D(0.0, 0.0, 0.0));
 	meta->SetColor(Color(0.8, 0.1, 0.1));
-	meta->SetLength(scene1->GetBoundary().GetX() * 2);
+	meta->SetLength(GetBoundary().GetX() * 2 * nivel);
 	meta->SetHeight(0.2);
 	meta->SetWidth(0.2);
-	scene1->AddGameObject(meta);
-	scene1->SetMeta(meta);
-	for (int i = 0; i < easyMode; i++) // Creamos los trenes y los añadimos
-	{
-		// Posicion Inicial Aleatoria
-		float randomX = ((rand() % int(scene1->GetBoundary().GetX())) - int(scene1->GetBoundary().GetX() / 2));
-		std::cout << (randomX) << std::endl;
-
-		trenLvl1 = new Model();
-		*trenLvl1 = loaderLvl1->GetModel();
-		trenLvl1->SetPosition(Vector3D(randomX, 1.7, -7.0 * i));
-		trenLvl1->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
-		trenLvl1->PaintColor(Color(0.1, 0.1, 0.1));
-		trenLvl1->SetSpeed(Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
-
-		scene1->AddTren(trenLvl1);
-		scene1->AddGameObject(trenLvl1);
-	}
+	AddGameObject(meta);
+	SetMeta(meta);
 	// Personaje
-	personaje = new Model();
-	*personaje = loaderPersonaje->GetModel();
 	personaje->SetPosition(Vector3D(0, 0.5, 5));
 	personaje->SetOrientation(Vector3D(0.0, 180.0, 0.0));
 	personaje->PaintColor(Color(0.2, 0.3, 0.8));
-	scene1->AddGameObject(personaje);
-	scene1->AddPersonaje(personaje);
+	AddGameObject(personaje);
+	AddPersonaje(personaje);
     //*/
 }
 

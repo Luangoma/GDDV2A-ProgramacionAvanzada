@@ -1,9 +1,11 @@
-#include "SceneCreditos.h"
 #include "Scene.h"
+#include "SceneCreditos.h"
+#include <iostream>
 
 void SceneCreditos::Init(){
     Scene::Init();
-    
+
+	std::cout << "Carga de la escena menu" << std::endl;
     // // // //Creditos finales
 	SetDrawVertexes(false);
 	SetDrawBox(true);
@@ -25,19 +27,32 @@ void SceneCreditos::Init(){
 		viasTren = new Model();
 	}
 	// Tren del nivel 1
-    AddTren(tren1M);
+	Model* tren1M = new Model();
+	*tren1M = loaderLvl1->GetModel();
+	tren1M->SetPosition(Vector3D(15.0, 1.7, 0.0));
+	tren1M->SetOrientation(Vector3D(0.0, 0.0, 0.0));
+	tren1M->PaintColor(Color(0.1, 0.1, 0.1));
+	AddTren(tren1M);
 	AddGameObject(tren1M);
-    // Tren del nivel 2
+	// Tren del nivel 2
+	Model* tren2M = new Model();
+	*tren2M = loaderLvl2->GetModel();
+	tren2M->SetPosition(Vector3D(25.0, 1.1, 5.0));
+	tren2M->SetOrientation(Vector3D(0.0, 0.0, 0.0));
+	tren2M->PaintColor(Color(0.73, 0.56, 0.1));
 	AddTren(tren2M);
 	AddGameObject(tren2M);
 	// Tren del nivel 3
+	Model* tren3M = new Model();
+	*tren3M = loaderLvl3->GetModel();
+	tren3M->SetPosition(Vector3D(30, 1.0, 10.0));
+	tren3M->SetOrientation(Vector3D(0.0, 0.0, 0.0));
+	tren3M->PaintColor(Color(0.4, 0.42, 0.4));
 	AddTren(tren3M);
 	AddGameObject(tren3M);
 	// Personaje
-	personaje = new Model();
-	*personaje = loaderPersonaje->GetModel();
-	personaje->SetPosition(Vector3D(-15, 0.5, -5));
-	personaje->SetOrientation(Vector3D(0.0, 160.0, 0.0));
+	personaje->SetPosition(Vector3D(5, 0, -5));
+	personaje->SetOrientation(Vector3D(0, -90, 0));
 	personaje->PaintColor(Color(0.2, 0.3, 0.8));
 	AddGameObject(personaje);
 	AddPersonaje(personaje);

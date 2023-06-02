@@ -15,7 +15,6 @@ private:
 	bool drawVertexes;
 	bool drawBox;
 
-	
 protected:
 
 	Camera camera;
@@ -39,8 +38,6 @@ protected:
 	Model* tren2M;
 	Model* tren3M;
 	
-	
-
 public:
 	Scene(Vector3D boundaryArgument = Vector3D(10, 8, 10), bool drawVertexesArgument = false, bool drawBoxArgument = true) : 
 		boundary(boundaryArgument), drawVertexes(drawVertexesArgument), drawBox(drawBoxArgument) {};

@@ -19,8 +19,6 @@ private:
 	milliseconds initialMilliseconds;
 	long lastUpdateTime;
 
-
-
 public:
 	Game() 
 	{
