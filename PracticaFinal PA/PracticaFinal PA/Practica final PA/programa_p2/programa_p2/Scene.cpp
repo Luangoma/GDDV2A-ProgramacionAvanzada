@@ -66,31 +66,32 @@ void Scene::Init()
 	// Carga del modelo 'viastren' (generico para los niveles)
 	loaderVias = new ModelLoader();
 	loaderVias->LoadModel("..\\..\\3dModels\\viasTren.obj");
-	std::cout<<"Carga de viasTren"<<std::endl;
+	std::cout << "Carga de viasTren" << std::endl;
 
 	// Carga del modelo 'TrenLvl1' (tren del nivel 1)
 	// Model* trenLvl1 = new Model();
 	loaderLvl1 = new ModelLoader();
 	loaderLvl1->LoadModel("..\\..\\3dModels\\TrenLvl1.obj");
-	std::cout<<"Carga de TrenLvl1"<<std::endl;
+	std::cout << "Carga de TrenLvl1" << std::endl;
 
 	// Carga del modelo 'TrenLvl2' (tren del nivel 2)
 	// Model* trenLvl2 = new Model();
 	loaderLvl2 = new ModelLoader();
 	loaderLvl2->LoadModel("..\\..\\3dModels\\TrenLvl2.obj");
-	std::cout<<"Carga de TrenLvl2"<<std::endl;
+	std::cout << "Carga de TrenLvl2" << std::endl;
 
 	// Carga del modelo 'TrenLvl3' (tren del nivel 3)
 	// Model* trenLvl3 = new Model();
 	loaderLvl3 = new ModelLoader();
 	loaderLvl3->LoadModel("..\\..\\3dModels\\TrenLvl3.obj");
-	std::cout<<"Carga de TrenLvl3"<<std::endl;
+	std::cout << "Carga de TrenLvl3" << std::endl;
 
 	// Carga del modelo 'Cop' (Jugador)
 	// Model* personaje = new Model();
 	loaderPersonaje = new ModelLoader();
 	loaderPersonaje->LoadModel("..\\..\\3dModels\\Cop.obj");
-	std::cout<<"Carga de Cop"<<std::endl<<std::endl;
+	std::cout << "Carga de Cop" << std::endl
+			  << std::endl;
 
 	/**
 	// Tren del nivel 1
@@ -134,8 +135,8 @@ void Scene::Init()
 	// Vias
 	viasTren = new Model();
 }
-	
-void Scene::Update(const float& timeIncrement)
+
+void Scene::Update(const float &timeIncrement)
 {
 	this->camera.Update(timeIncrement);
 
@@ -143,7 +144,6 @@ void Scene::Update(const float& timeIncrement)
 	{
 		this->gameObjects[idx]->Update(timeIncrement);
 	}
-	
 }
 
 void Scene::Render()
@@ -169,4 +169,9 @@ void Scene::ProcessMouseMovement(int x, int y)
 void Scene::ProcessMouseClick(int button, int state, int x, int y)
 {
 	// cout << "Clic del mouse: " << button << " " << state << " " << x << " " << y << endl;
+}
+
+int Scene::CheckStatus()
+{
+	return 0;
 }

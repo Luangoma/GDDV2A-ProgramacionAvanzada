@@ -9,6 +9,7 @@ class Model : public Solid
 {
 private:
 	vector<Triangle> triangles;
+
 public:
 	Model() {}
 
@@ -17,7 +18,4 @@ public:
 	void Clear();
 
 	void Render();
-
-
 };
-

@@ -1,22 +1,21 @@
 ﻿#include "SceneLevel.h"
 #include <iostream>
 
-
 void SceneLevel::Init()
 {
-    Scene::Init();
+	Scene::Init();
 
-    //El resto
-    /**/
-    // // // //Primera escena
+	// El resto
+	/**/
+	// // // // Escena
 	std::cout << "Carga de la escena " << nivel << std::endl;
 	SetDrawVertexes(false);
 	SetDrawBox(true);
-	SetBoundary(Vector3D(50, 50, 100));
+	SetBoundary(Vector3D(50 * nivel, 50 * nivel, 100));
 	SetActivo(true);
 	// CAMARA EN CENITAL (60 grados)
-	Camera* camara = new Camera();
-	camara->SetPosition(Vector3D(0, 2+nivel*2, 18*nivel));
+	Camera *camara = new Camera();
+	camara->SetPosition(Vector3D(0, 2 + nivel * 2, 18 * nivel));
 	camara->SetOrientation(Vector3D(60.0, 0.0, 0.0));
 	SetCamera(*camara);
 	// CARGAR MODELOS
@@ -24,7 +23,7 @@ void SceneLevel::Init()
 	viasTren->SetPosition(Vector3D(0, 0, 0));
 	viasTren->PaintColor(Color(0.6, 0.3, 0.3));
 
-	vector<Model*> arrayVias;
+	vector<Model *> arrayVias;
 	const int mode = 1 + (nivel * 2);
 	desplazamiento = 0.0;
 	for (int i = 0; i < mode; i++) // Creamos las vias y las añadimos
@@ -41,7 +40,7 @@ void SceneLevel::Init()
 	{
 		// Posicion Inicial Aleatoria
 		float randomX = ((rand() % int(GetBoundary().GetX())) - int(GetBoundary().GetX() / 2));
-		//std::cout << (randomX) << std::endl;
+		// std::cout << (randomX) << std::endl;
 
 		tren1M = new Model();
 		if (nivel == 1)
@@ -90,7 +89,7 @@ void SceneLevel::Init()
 	personaje->PaintColor(Color(0.2, 0.3, 0.8));
 	AddGameObject(personaje);
 	AddPersonaje(personaje);
-    //*/
+	//*/
 }
 
 void SceneLevel::checkBoundary()
@@ -101,24 +100,24 @@ void SceneLevel::checkBoundary()
 		{
 			this->gameObjects[idx]->SetPosition(
 				Vector3D(-gameObjects[idx]->GetPosition().GetX(),
-					gameObjects[idx]->GetPosition().GetY(),
-					gameObjects[idx]->GetPosition().GetZ()));
+						 gameObjects[idx]->GetPosition().GetY(),
+						 gameObjects[idx]->GetPosition().GetZ()));
 		}
 
 		if (this->gameObjects[idx]->GetPosition().GetY() < -(this->boundary.GetY()) || this->gameObjects[idx]->GetPosition().GetY() > this->boundary.GetY())
 		{
 			this->gameObjects[idx]->SetSpeed(
 				Vector3D(this->gameObjects[idx]->GetSpeed().GetX(),
-					-1 * this->gameObjects[idx]->GetSpeed().GetY(),
-					this->gameObjects[idx]->GetSpeed().GetZ()));
+						 -1 * this->gameObjects[idx]->GetSpeed().GetY(),
+						 this->gameObjects[idx]->GetSpeed().GetZ()));
 		}
 
 		if (this->gameObjects[idx]->GetPosition().GetZ() < -(this->boundary.GetZ()) || this->gameObjects[idx]->GetPosition().GetZ() > this->boundary.GetZ())
 		{
 			this->gameObjects[idx]->SetSpeed(
 				Vector3D(this->gameObjects[idx]->GetSpeed().GetX(),
-					this->gameObjects[idx]->GetSpeed().GetY(),
-					-1 * this->gameObjects[idx]->GetSpeed().GetZ()));
+						 this->gameObjects[idx]->GetSpeed().GetY(),
+						 -1 * this->gameObjects[idx]->GetSpeed().GetZ()));
 		}
 	}
 
@@ -142,7 +141,7 @@ void SceneLevel::checkBoundary()
 void SceneLevel::checkColisiones()
 {
 
-	Vector3D* dimensionesPersonaje = new Vector3D(1.78, 1.13, 3.73);
+	Vector3D *dimensionesPersonaje = new Vector3D(1.78, 1.13, 3.73);
 	// La x, y & z del personaje estan en su centro, menos la z que est� en el suelo.
 
 	// COMPROBAR ROTACION DEL PERSONAJE PARA EL CALCULO DE LAS COLISIONES.
@@ -180,7 +179,7 @@ void SceneLevel::checkColisiones()
 	{
 		// Dimensiones del personaje.
 
-		Vector3D* dimensionesTren;
+		Vector3D *dimensionesTren;
 
 		// CAMBIAR LAS DIMENSIONES DEL TREN DEPENDIENDO DEL NIVEL.
 		// Cada nivel tiene un tren con dimensiones diferentes.
@@ -194,7 +193,7 @@ void SceneLevel::checkColisiones()
 		}
 		else
 		{
-			//dimensionesTren = new Vector3D(90.5, 1.9, 2.03);
+			// dimensionesTren = new Vector3D(90.5, 1.9, 2.03);
 			dimensionesTren = new Vector3D(90.5, 1.9, 2.03);
 		}
 
@@ -238,6 +237,10 @@ void SceneLevel::checkColisiones()
 
 void SceneLevel::haPerdido()
 {
+	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	estadoPerder = true;
+
+	/**
 	Text* textoPerdido = new Text();
 	Text* textoReiniciar = new Text();
 	textoPerdido->SetText("HAS PERDIDO");
@@ -257,16 +260,18 @@ void SceneLevel::haPerdido()
 		textoPerdido->SetPosition(Vector3D(0, 15, 3));
 		textoReiniciar->SetPosition(Vector3D(0, 15, 2));
 	}
-
 	textoPerdido->SetColor(Color(255, 0, 0));
 	textoReiniciar->SetColor(Color(255, 0, 0));
 	this->AddGameObject(textoPerdido);
 	this->AddGameObject(textoReiniciar);
-	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	//*/
 }
 
 void SceneLevel::haGanado()
 {
+	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	estadoGanar = true;
+	/**
 	Text* textoGanado = new Text();
 	textoGanado->SetText("HAS GANADO");
 	if (nivel == 1)
@@ -281,17 +286,16 @@ void SceneLevel::haGanado()
 	{
 		textoGanado->SetPosition(Vector3D(0, 15, 3));
 	}
-
 	textoGanado->SetColor(Color(255, 0, 0));
 	this->AddGameObject(textoGanado);
-	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	//*/
 }
 
-void SceneLevel::Update(const float& timeIncrement){
-    Scene::Update(timeIncrement);
-    this->checkBoundary();
+void SceneLevel::Update(const float &timeIncrement)
+{
+	Scene::Update(timeIncrement);
+	this->checkBoundary();
 	this->checkColisiones();
-
 }
 
 void SceneLevel::ProcessKeyPressed(unsigned char key, int px, int py)
@@ -348,10 +352,30 @@ void SceneLevel::ProcessKeyPressed(unsigned char key, int px, int py)
 	{
 		if (key == 'R' || key == 'r')
 		{
-			//REINICIAR EL JUEGO.
+			// REINICIAR EL JUEGO.
+			this->estadoGanar = false;
+			this->estadoPerder = false;
 			this->activo = true;
 			this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
 			this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
 		}
+	}
+}
+
+int SceneLevel::CheckStatus()
+{
+	// Devuelve un 0 si no pasa nada, un 1 si ha ganado y un 2 si ha perdido,
+	// para poder cambiar a las escenas de Game Over en Game.cpp.
+	if (estadoGanar)
+	{
+		return 1;
+	}
+	else if (estadoPerder)
+	{
+		return 2;
+	}
+	else
+	{
+		return 0;
 	}
 }

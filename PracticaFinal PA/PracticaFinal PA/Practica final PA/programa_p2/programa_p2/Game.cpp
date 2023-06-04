@@ -18,6 +18,7 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 	{
 		this->activeScene = this->scenes[index];
 	}
+	// Al hacer upcasting, usamos processKeyPressed como método virtual para que se ejecute el metodo mas derivado.
 	activeScene->ProcessKeyPressed(key, px, py);
 }
 
@@ -35,40 +36,39 @@ void Game::ProcessMouseClick(int button, int state, int x, int y)
 
 void Game::Init()
 {
-	//activeScene = sceneMenu;
+	// activeScene = sceneMenu;
 	cout << "GAME INIT..." << endl;
 	srand(time(NULL));
 
-	SceneMenu* sceneMenu = new SceneMenu();
+	SceneMenu *sceneMenu = new SceneMenu();
 	sceneMenu->Init();
 	this->scenes.push_back(sceneMenu);
 
 	this->activeScene = this->scenes[0];
 
-	SceneLevel* sceneLevelNivel1 = new SceneLevel(true, 1);
+	SceneLevel *sceneLevelNivel1 = new SceneLevel(true, 1);
 	sceneLevelNivel1->Init();
 	this->scenes.push_back(sceneLevelNivel1);
 
-	SceneLevel* sceneLevelNivel2 = new SceneLevel(true, 2);
+	SceneLevel *sceneLevelNivel2 = new SceneLevel(true, 2);
 	sceneLevelNivel2->Init();
 	this->scenes.push_back(sceneLevelNivel2);
 
-	SceneLevel* sceneLevelNivel3 = new SceneLevel(true, 3);
+	SceneLevel *sceneLevelNivel3 = new SceneLevel(true, 3);
 	sceneLevelNivel3->Init();
 	this->scenes.push_back(sceneLevelNivel3);
-
 	/**
-	SceneGameOver* sceneOver = new SceneGameOver();
+	SceneGameOver* sceneOverWinner = new SceneGameOver(true);
 	sceneOver->Init();
-	this->scenes.push_back(sceneOver);
-	//*/
+	this->scenes.push_back(sceneOverWinner);
 
-	SceneCreditos* sceneFinal = new SceneCreditos();
+	SceneGameOver* sceneOverLoser = new SceneGameOver(false);
+	sceneOver->Init();
+	this->scenes.push_back(sceneOverLoser);
+	//*/
+	SceneCreditos *sceneFinal = new SceneCreditos();
 	sceneFinal->Init();
 	this->scenes.push_back(sceneFinal);
-
-
-	
 
 	/**
 	// // // //Menú inicial
@@ -203,10 +203,6 @@ void Game::Init()
 	scene0->SetMeta(meta);
 	//*/
 
-
-
-
-
 	/**
 	// // // //Primera escena
 	std::cout << "Carga de la primera escena" << std::endl;
@@ -275,10 +271,6 @@ void Game::Init()
 	scene1->AddGameObject(personaje);
 	scene1->AddPersonaje(personaje);
 	//*/
-
-
-
-
 
 	/**
 	// // // //Segunda escena
@@ -350,10 +342,6 @@ void Game::Init()
 	scene2->AddPersonaje(personaje);
 	//*/
 
-
-
-
-
 	/**
 	// // // //Tercera escena
 	std::cout << "Carga de la tercera escena" << std::endl;
@@ -423,10 +411,6 @@ void Game::Init()
 	scene3->AddGameObject(personaje);
 	scene3->AddPersonaje(personaje);
 	//*/
-
-
-
-
 
 	/**
 	// // // //Creditos finales
@@ -532,5 +516,16 @@ void Game::Update()
 		if (this->activeScene != nullptr)
 			this->activeScene->Update(TIME_INCREMENT);
 		this->lastUpdateTime = currenTime.count() - this->initialMilliseconds.count();
+	}
+
+	if (activeScene->CheckStatus() == 1)
+	{
+		// Ir a pantalla de ganar.
+		this->activeScene = this->scenes[scenes.size() - 3];
+	}
+	else if (activeScene->CheckStatus() == 2)
+	{
+		// Ir a pantalla de perder.
+		this->activeScene = this->scenes[scenes.size() - 2];
 	}
 }

@@ -3,12 +3,13 @@
 class SceneGameOver : public Scene
 {
 protected:
-    vector<Text*> titulos;
+    Text *titulo;
+    bool status;
+
 public:
-    SceneGameOver() : Scene() {}
+    SceneGameOver(bool statusToSet) : Scene(), status(statusToSet) {}
 
     void Init();
-    void Update(const float& timeIncrement);
+    void Update(const float &timeIncrement);
     void ProcessKeyPressed(unsigned char key, int px, int py);
 };
-

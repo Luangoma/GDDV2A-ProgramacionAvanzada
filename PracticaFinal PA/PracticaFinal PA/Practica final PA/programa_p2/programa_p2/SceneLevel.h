@@ -9,30 +9,29 @@
 class SceneLevel : public Scene
 {
 private:
-
-	Cuboid* meta;
-	bool activo;
+    Cuboid *meta;
+    bool activo, estadoGanar, estadoPerder;
     int nivel;
-	void checkBoundary();
+    void checkBoundary();
 
 public:
-
-    SceneLevel(bool activoArgument = true, int nivelToSet = 1) : Scene(), activo(activoArgument), nivel(nivelToSet) {
+    SceneLevel(bool activoArgument = true, int nivelToSet = 1) : Scene(), activo(activoArgument),
+                                                                 nivel(nivelToSet), estadoGanar(false), estadoPerder(false)
+    {
         std::cout << "Constructor de nivel, nivel = " << nivel << std::endl;
     }
 
     void Init();
 
-	inline void SetNivel(const int& nivelToSet) { this->nivel = nivelToSet; };
-	inline void SetMeta(Cuboid* metaToSet) { this->meta = metaToSet; }
-	inline void SetActivo(bool activoToSet) { this->activo = activoToSet; }
+    inline void SetNivel(const int &nivelToSet) { this->nivel = nivelToSet; };
+    inline void SetMeta(Cuboid *metaToSet) { this->meta = metaToSet; }
+    inline void SetActivo(bool activoToSet) { this->activo = activoToSet; }
 
-    void Update(const float& timeIncrement);
+    int CheckStatus();
+    void Update(const float &timeIncrement);
     void checkColisiones();
     void ProcessKeyPressed(unsigned char key, int px, int py);
 
     void haPerdido();
-	void haGanado();
-
+    void haGanado();
 };
-
