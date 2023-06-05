@@ -26,6 +26,7 @@ public:
     inline void SetNivel(const int &nivelToSet) { this->nivel = nivelToSet; };
     inline void SetMeta(Cuboid *metaToSet) { this->meta = metaToSet; }
     inline void SetActivo(bool activoToSet) { this->activo = activoToSet; }
+    inline void SetStatus(bool statusToSet) { this->estadoGanar = statusToSet; this->estadoPerder = statusToSet; }
 
     int CheckStatus();
     void Update(const float &timeIncrement);
@@ -34,4 +35,6 @@ public:
 
     void haPerdido();
     void haGanado();
+
+    void Reset();
 };

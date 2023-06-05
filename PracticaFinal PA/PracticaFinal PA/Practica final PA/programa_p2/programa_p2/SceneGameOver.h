@@ -1,9 +1,10 @@
 #pragma once
 #include "Scene.h"
+#include <vector>
 class SceneGameOver : public Scene
 {
 protected:
-    Text *titulo;
+    vector<Text *> titulos;
     bool status;
 
 public:

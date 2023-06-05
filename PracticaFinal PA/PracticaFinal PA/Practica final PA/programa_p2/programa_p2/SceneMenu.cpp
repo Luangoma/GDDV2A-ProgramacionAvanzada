@@ -6,7 +6,7 @@ void SceneMenu::Init()
 	Scene::Init();
 
 	std::cout << "Carga de la escena menu" << std::endl;
-	// // // // Men� inicial
+	// // // // Menu inicial
 	SetDrawVertexes(false);
 	SetDrawBox(true);
 	SetBoundary(Vector3D(100, 100, 100));
@@ -20,10 +20,10 @@ void SceneMenu::Init()
 	*viasTren = loaderVias->GetModel();
 	viasTren->SetPosition(Vector3D(0, 0, 0));
 	viasTren->PaintColor(Color(0.3, 0.3, 0.3));
-	// // // MEN�
+	// // // MENU
 	vector<Model *> arrayVias;
 	desplazamiento = 0.0;
-	for (int i = 0; i < 3; i++) // Creamos las vias y las a�adimos
+	for (int i = 0; i < 3; i++) // Creamos las vias y las anadimos
 	{
 		*viasTren = loaderVias->GetModel();
 		viasTren->SetPosition(Vector3D(viasTren->GetPosition().GetX() + 50, viasTren->GetPosition().GetY(), viasTren->GetPosition().GetZ() + desplazamiento));
@@ -106,7 +106,7 @@ void SceneMenu::Init()
 	cielo = new Cuboid();
 	cielo->SetPosition(Vector3D(GetBoundary().GetX(), GetBoundary().GetY() / 2, 0.0));
 	cielo->SetOrientation(Vector3D(0.0, 0.0, 0.0));
-	cielo->SetColor(Color(0.0, 0.67, 0.89));
+	cielo->SetColor(Color(0.13, 0.44, 0.7));
 	cielo->SetLength(0.2);
 	cielo->SetHeight(GetBoundary().GetY());
 	cielo->SetWidth(GetBoundary().GetZ());
@@ -115,7 +115,7 @@ void SceneMenu::Init()
 	cielo = new Cuboid();
 	cielo->SetPosition(Vector3D(GetBoundary().GetX() / 3, GetBoundary().GetY() / 2, GetBoundary().GetZ() / 2));
 	cielo->SetOrientation(Vector3D(0.0, 0.0, 0.0));
-	cielo->SetColor(Color(0.0, 0.67, 0.89));
+	cielo->SetColor(Color(0.13, 0.44, 0.7));
 	cielo->SetLength(GetBoundary().GetX() * 2);
 	cielo->SetHeight(GetBoundary().GetY());
 	cielo->SetWidth(0.2);

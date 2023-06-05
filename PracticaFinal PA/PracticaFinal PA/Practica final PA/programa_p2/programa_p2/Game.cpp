@@ -12,6 +12,11 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 {
 	cout << "Tecla pulsada: " << key << endl;
 
+	if(key == 'R' || key == 'r'){
+		this->activeScene->Reset();
+        this->activeScene = this->scenes[0];
+    }
+
 	int index = key - '0';
 
 	if (index < this->scenes.size())
@@ -57,18 +62,18 @@ void Game::Init()
 	SceneLevel *sceneLevelNivel3 = new SceneLevel(true, 3);
 	sceneLevelNivel3->Init();
 	this->scenes.push_back(sceneLevelNivel3);
-	/**
-	SceneGameOver* sceneOverWinner = new SceneGameOver(true);
-	sceneOver->Init();
-	this->scenes.push_back(sceneOverWinner);
-
-	SceneGameOver* sceneOverLoser = new SceneGameOver(false);
-	sceneOver->Init();
-	this->scenes.push_back(sceneOverLoser);
-	//*/
 	SceneCreditos *sceneFinal = new SceneCreditos();
 	sceneFinal->Init();
 	this->scenes.push_back(sceneFinal);
+	/**/
+	SceneGameOver* sceneOverWinner = new SceneGameOver(true);
+	sceneOverWinner->Init();
+	this->scenes.push_back(sceneOverWinner);
+
+	SceneGameOver* sceneOverLoser = new SceneGameOver(false);
+	sceneOverLoser->Init();
+	this->scenes.push_back(sceneOverLoser);
+	//*/
 
 	/**
 	// // // //Menú inicial
@@ -521,11 +526,13 @@ void Game::Update()
 	if (activeScene->CheckStatus() == 1)
 	{
 		// Ir a pantalla de ganar.
-		this->activeScene = this->scenes[scenes.size() - 3];
+		this->activeScene->Reset();
+		this->activeScene = this->scenes[scenes.size() - 2];
 	}
 	else if (activeScene->CheckStatus() == 2)
 	{
 		// Ir a pantalla de perder.
-		this->activeScene = this->scenes[scenes.size() - 2];
+		this->activeScene->Reset();
+		this->activeScene = this->scenes[scenes.size() - 1];
 	}
 }

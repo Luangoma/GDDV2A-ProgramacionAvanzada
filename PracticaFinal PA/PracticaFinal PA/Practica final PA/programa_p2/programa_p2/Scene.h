@@ -52,6 +52,8 @@ public:
 	void Render();
 	virtual void Update(const float &timeIncrement);
 
+	virtual void Reset();
+
 	virtual int CheckStatus();
 	virtual void ProcessKeyPressed(unsigned char key, int px, int py);
 	void ProcessMouseMovement(int x, int y);

@@ -350,7 +350,7 @@ void SceneLevel::ProcessKeyPressed(unsigned char key, int px, int py)
 	}
 	else
 	{
-		if (key == 'R' || key == 'r')
+		/* if (key == 'R' || key == 'r')
 		{
 			// REINICIAR EL JUEGO.
 			this->estadoGanar = false;
@@ -358,7 +358,7 @@ void SceneLevel::ProcessKeyPressed(unsigned char key, int px, int py)
 			this->activo = true;
 			this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
 			this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
-		}
+		} */
 	}
 }
 
@@ -378,4 +378,15 @@ int SceneLevel::CheckStatus()
 	{
 		return 0;
 	}
+}
+
+void SceneLevel::Reset()
+{
+	this->estadoGanar = false;
+	this->estadoPerder = false;
+	this->activo = true;
+	this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
+	this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
+	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+
 }

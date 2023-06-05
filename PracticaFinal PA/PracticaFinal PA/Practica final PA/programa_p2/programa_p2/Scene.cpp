@@ -171,6 +171,8 @@ void Scene::ProcessMouseClick(int button, int state, int x, int y)
 	// cout << "Clic del mouse: " << button << " " << state << " " << x << " " << y << endl;
 }
 
+void Scene::Reset(){}
+
 int Scene::CheckStatus()
 {
 	return 0;
