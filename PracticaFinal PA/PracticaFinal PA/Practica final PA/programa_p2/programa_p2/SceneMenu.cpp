@@ -55,7 +55,6 @@ void SceneMenu::Init()
 	// Personaje
 	personaje->SetPosition(Vector3D(-15, 0.5, -5));
 	personaje->SetOrientation(Vector3D(0.0, 160.0, 0.0));
-	personaje->PaintColor(Color(0.2, 0.3, 0.8));
 	AddGameObject(personaje);
 	AddPersonaje(personaje);
 	//*/

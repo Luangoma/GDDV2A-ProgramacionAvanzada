@@ -45,6 +45,53 @@ void Scene::Init()
 		point8->SetPosition(Vector3D(0, 0, this->GetBoundary().GetZ()));
 		this->AddGameObject(point8);
 		//*/
+
+	}
+	
+	if (this->GetDrawBox())
+	{
+		/**
+		Cuboid* floor = new Cuboid();
+		floor->SetHeight(0.01);
+		floor->SetWidth(this->GetBoundary().GetZ());
+		floor->SetLength(this->GetBoundary().GetX());
+		floor->SetColor(Color(0.5, 0.8, 1));
+		floor->SetPosition(Vector3D(this->GetBoundary().GetX() / 2, 0, this->GetBoundary().GetZ() / 2));
+		floor->SetIsTransparent(true);
+		this->AddGameObject(floor);
+		Cuboid* ceil = new Cuboid();
+		ceil->SetHeight(0.01);
+		ceil->SetWidth(this->GetBoundary().GetZ());
+		ceil->SetLength(this->GetBoundary().GetX());
+		ceil->SetColor(Color(0.5, 0.8, 1));
+		ceil->SetPosition(Vector3D(this->GetBoundary().GetX() / 2, this->GetBoundary().GetY(), this->GetBoundary().GetZ() / 2));
+		ceil->SetIsTransparent(true);
+		this->AddGameObject(ceil);
+		Cuboid* back = new Cuboid();
+		back->SetHeight(this->GetBoundary().GetY());
+		back->SetWidth(0.01);
+		back->SetLength(this->GetBoundary().GetX());
+		back->SetColor(Color(0.6, 0.2, 0.2));
+		back->SetPosition(Vector3D(this->GetBoundary().GetX() / 2, this->GetBoundary().GetY() / 2, 0));
+		back->SetIsTransparent(true);
+		this->AddGameObject(back);
+		Cuboid* left = new Cuboid();
+		left->SetHeight(this->GetBoundary().GetY());
+		left->SetWidth(this->GetBoundary().GetZ());
+		left->SetLength(0.01);
+		left->SetColor(Color(0.2, 0.2, 0.6));
+		left->SetPosition(Vector3D(0, this->GetBoundary().GetY() / 2, this->GetBoundary().GetZ() / 2));
+		left->SetIsTransparent(true);
+		this->AddGameObject(left);
+		Cuboid* right = new Cuboid();
+		right->SetHeight(this->GetBoundary().GetY());
+		right->SetWidth(this->GetBoundary().GetZ());
+		right->SetLength(0.01);
+		right->SetColor(Color(0.7, 0.9, 0.5));
+		right->SetPosition(Vector3D(this->GetBoundary().GetX(), this->GetBoundary().GetY() / 2, this->GetBoundary().GetZ() / 2));
+		right->SetIsTransparent(true);
+		this->AddGameObject(right);
+		//*/
 	}
 
 	// Carga de recursos base
@@ -73,11 +120,10 @@ void Scene::Init()
 	loaderPersonaje->LoadModel("..\\..\\3dModels\\Cop.obj");
 	std::cout << "Carga del personaje" << std::endl;
 
-	// Inicializacion de tren
-	tren = new Model();
 	// Inicializacion de personaje
 	personaje = new Model();
 	*personaje = loaderPersonaje->GetModel();
+	personaje->PaintColor(Color(0.2, 0.3, 0.8));
 
 	/**
 	// Tren del nivel 1

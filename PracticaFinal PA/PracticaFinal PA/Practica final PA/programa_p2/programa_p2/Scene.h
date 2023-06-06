@@ -34,7 +34,7 @@ public:
 	inline bool GetDrawVertexes() const { return this->drawVertexes; }
 	inline bool GetDrawBox() const { return this->drawBox; }
 
-	// SETTER
+	// SETTERS
 	inline void SetBoundary(const Vector3D &boundaryToSet) { this->boundary = boundaryToSet; }
 	inline void SetDrawVertexes(const bool &drawVertexesToSet) { this->drawVertexes = drawVertexesToSet; }
 	inline void SetDrawBox(const bool &drawBoxToSet) { this->drawBox = drawBoxToSet; }

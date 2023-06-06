@@ -11,7 +11,7 @@ void SceneLevel::Init()
 	SetDrawBox(true);
 	SetBoundary(Vector3D(50 * nivel, 50 * nivel, 100));
 	// CAMARA EN CENITAL (60 grados)
-	Camera *camara = new Camera();
+	Camera* camara = new Camera();
 	camara->SetPosition(Vector3D(0, 2 + (3.75 * (nivel - 1)), 20 + (7.5 * (nivel - 1))));
 	camara->SetOrientation(Vector3D(60.0, 0.0, 0.0));
 	SetCamera(*camara);
@@ -36,7 +36,6 @@ void SceneLevel::Init()
 		{
 			*tren = loaderLvl1->GetModel();
 			tren->SetPosition(Vector3D(randomX, 1.7, -incremento * i));
-			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
 			tren->PaintColor(Color(0.1, 0.1, 0.1));
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
 		}
@@ -44,7 +43,6 @@ void SceneLevel::Init()
 		{
 			*tren = loaderLvl2->GetModel();
 			tren->SetPosition(Vector3D(randomX, 1.1, -incremento * i));
-			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
 			tren->PaintColor(Color(0.73, 0.56, 0.1));
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 0.3 : -0.3, 0.0, 0.0));
 		}
@@ -52,10 +50,10 @@ void SceneLevel::Init()
 		{
 			*tren = loaderLvl3->GetModel();
 			tren->SetPosition(Vector3D(randomX, 1, -incremento * i));
-			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
 			tren->PaintColor(Color(0.4, 0.4, 0.4));
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 1 : -1, 0.0, 0.0));
 		}
+		tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
 
 		AddTren(tren);
 		AddGameObject(tren);
@@ -69,13 +67,18 @@ void SceneLevel::Init()
 	meta->SetHeight(0.2);
 	meta->SetWidth(0.2);
 	AddGameObject(meta);
-	SetMeta(meta);
+	//SetMeta(meta);
 	// Personaje
 	personaje->SetPosition(Vector3D(0, 0.5, 5));
 	personaje->SetOrientation(Vector3D(0.0, 180.0, 0.0));
-	personaje->PaintColor(Color(0.2, 0.3, 0.8));
 	AddGameObject(personaje);
 	AddPersonaje(personaje);
+	// Potenciadores
+	/**
+	ModelLoader* loaderPotenciador = new ModelLoader();
+	loaderPotenciador->LoadModel("..\\..\\3dModels\\Star.obj"); //Carga del modelo de la estrella.
+	estrella = new PowerUp();
+	AddGameObject(estrella);
 	//*/
 }
 

@@ -145,6 +145,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="programa_p2.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneCreditos.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelLoader.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneCreditos.h" />
     <ClInclude Include="SceneGameOver.h" />

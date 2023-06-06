@@ -1,10 +1,11 @@
 #pragma once
 #include "Scene.h"
-#include <vector>
 #include "Camera.h"
 #include "ModelLoader.h"
 #include "Model.h"
 #include "Cuboid.h"
+#include "PowerUp.h"
+#include <vector>
 #include <iostream>
 class SceneLevel : public Scene
 {
@@ -12,6 +13,7 @@ private:
     int nivel;
     Cuboid *meta;
     bool activo, estadoGanar, estadoPerder;
+    PowerUp *estrella;
     void checkBoundary();
 
 public:

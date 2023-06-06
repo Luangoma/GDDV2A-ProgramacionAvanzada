@@ -56,7 +56,6 @@ void SceneCreditos::Init()
 	// Personaje
 	personaje->SetPosition(Vector3D(5, 0, -5));
 	personaje->SetOrientation(Vector3D(0, -90, 0));
-	personaje->PaintColor(Color(0.2, 0.3, 0.8));
 	AddGameObject(personaje);
 	AddPersonaje(personaje);
 	// Texto
