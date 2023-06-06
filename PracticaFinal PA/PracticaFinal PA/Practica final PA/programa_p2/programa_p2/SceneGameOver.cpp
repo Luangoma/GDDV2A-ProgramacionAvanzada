@@ -1,9 +1,17 @@
 #include "SceneGameOver.h"
+#include <iostream>
 
 void SceneGameOver::Init()
 {
-    //Scene::Init();
-    
+    // Scene::Init();
+
+    std::cout << "Carga de la escena resultado" << std::endl << std::endl;
+    // CAMARA
+    Camera *camara = new Camera();
+    camara->SetPosition(Vector3D(0.0, 0.0, 0.0));
+    camara->SetOrientation(Vector3D(0.0, 0.0, 0.0));
+    SetCamera(*camara);
+    // Eleccion de texto
     string estado;
     if (status)
     {
@@ -13,35 +21,22 @@ void SceneGameOver::Init()
     {
         estado = "Ha perdido";
     }
-    Text* titulo = new Text();
-	titulo->SetText(estado);
-    titulo->SetPosition(Vector3D(-0.1,0.0,-1.0));
-    titulo->SetColor(Color(1, 1, 1));
+    Text *titulo = new Text();
+    titulo->SetText(estado);
+    titulo->SetPosition(Vector3D(-0.1, 0.0, -1.0));
     titulos.push_back(titulo);
-    Text* titulo1 = new Text();
-	titulo1->SetText("Pulse R para volver al inicio");
-    titulo1->SetPosition(Vector3D(-0.25,-0.2,-1.0));
-    titulo1->SetColor(Color(1, 1, 1));
-    titulos.push_back(titulo1);
-    
-    for (int i = 0; i < 2; i++) // Creamos las vias y las añadimos
-	{
-		AddGameObject(titulos[i]);
-	}
-    // CAMARA 
-	Camera *camara = new Camera();
-	camara->SetPosition(Vector3D(0.0,0.0,0.0));
-	camara->SetOrientation(Vector3D(0.0,0.0,0.0));
-	SetCamera(*camara);
-    /*
-    Text *textoJugarNivel2 = new Text();
-	textoJugarNivel2->SetText("Jugar Nivel 2 - pulse 2");
-	textoJugarNivel2->SetPosition(Vector3D(0, desplazamiento, -8));
-	textoJugarNivel2->SetColor(Color(1, 1, 1));
-	AddGameObject(textoJugarNivel2);
-    */
+    titulo = new Text();
+    titulo->SetText("Pulse R para volver al inicio");
+    titulo->SetPosition(Vector3D(-0.25, -0.2, -1.0));
+    titulos.push_back(titulo);
 
+    for (int i = 0; i < titulos.size(); i++) // AÃ±adimos los textos
+    {
+        titulos[i]->SetColor(Color(1, 1, 1));
+        AddGameObject(titulos[i]);
+    }
 }
+
 void SceneGameOver::Update(const float &timeIncrement)
 {
 }

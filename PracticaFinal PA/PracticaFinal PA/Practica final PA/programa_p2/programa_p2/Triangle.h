@@ -4,7 +4,6 @@
 class Triangle : public Solid
 {
 private:
-
 	Vector3D vertex0, vertex1, vertex2;
 	Vector3D normal0, normal1, normal2;
 	Color color0, color1, color2;

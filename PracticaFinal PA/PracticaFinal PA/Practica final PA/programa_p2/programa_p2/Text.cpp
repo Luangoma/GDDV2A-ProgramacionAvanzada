@@ -1,7 +1,7 @@
 #include "Text.h"
 #include <GL/glut.h>
 
-void Text::Render() 
+void Text::Render()
 {
 	glPushMatrix();
 	glColor3f(GetColor().GetRed(), GetColor().GetGreen(), GetColor().GetBlue());

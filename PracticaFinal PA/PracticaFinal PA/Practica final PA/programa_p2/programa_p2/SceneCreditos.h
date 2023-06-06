@@ -2,6 +2,9 @@
 #include "Scene.h"
 class SceneCreditos : public Scene
 {
+protected:
+    vector<Text *> titulos;
+
 public:
     SceneCreditos() : Scene() {}
 

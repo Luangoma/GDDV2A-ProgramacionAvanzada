@@ -12,10 +12,11 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 {
 	cout << "Tecla pulsada: " << key << endl;
 
-	if(key == 'R' || key == 'r'){
+	if (key == 'R' || key == 'r')
+	{
 		this->activeScene->Reset();
-        this->activeScene = this->scenes[0];
-    }
+		this->activeScene = this->scenes[0];
+	}
 
 	int index = key - '0';
 
@@ -49,8 +50,7 @@ void Game::Init()
 	sceneMenu->Init();
 	this->scenes.push_back(sceneMenu);
 
-	this->activeScene = this->scenes[0];
-
+	/**
 	SceneLevel *sceneLevelNivel1 = new SceneLevel(true, 1);
 	sceneLevelNivel1->Init();
 	this->scenes.push_back(sceneLevelNivel1);
@@ -62,18 +62,27 @@ void Game::Init()
 	SceneLevel *sceneLevelNivel3 = new SceneLevel(true, 3);
 	sceneLevelNivel3->Init();
 	this->scenes.push_back(sceneLevelNivel3);
+	//*/
+	/**/
+	SceneLevel *sceneLevel;
+	for (int i = 1; i <= 3; i++)
+	{
+		sceneLevel = new SceneLevel(true, i);
+		sceneLevel->Init();
+		this->scenes.push_back(sceneLevel);
+	}
+	//*/
 	SceneCreditos *sceneFinal = new SceneCreditos();
 	sceneFinal->Init();
 	this->scenes.push_back(sceneFinal);
-	/**/
-	SceneGameOver* sceneOverWinner = new SceneGameOver(true);
+
+	SceneGameOver *sceneOverWinner = new SceneGameOver(true);
 	sceneOverWinner->Init();
 	this->scenes.push_back(sceneOverWinner);
 
-	SceneGameOver* sceneOverLoser = new SceneGameOver(false);
+	SceneGameOver *sceneOverLoser = new SceneGameOver(false);
 	sceneOverLoser->Init();
 	this->scenes.push_back(sceneOverLoser);
-	//*/
 
 	/**
 	// // // //Menú inicial
@@ -491,17 +500,17 @@ void Game::Init()
 	scene4->SetMeta(meta);
 	//*/
 
-	/**
 	// GUARDADO DE ESCENAS
+	/**
 	std::cout << "Subida de escenas" << std::endl;
 	this->scenes.push_back(scene0);
 	this->scenes.push_back(scene1);
 	this->scenes.push_back(scene2);
 	this->scenes.push_back(scene3);
 	this->scenes.push_back(scene4);
-	std::cout << scenes.size() << std::endl;
-	this->activeScene = this->scenes[0];
 	//*/
+	std::cout << "Escenas cargadas: "<< scenes.size() << std::endl;
+	this->activeScene = this->scenes[0];
 }
 
 void Game::Render()

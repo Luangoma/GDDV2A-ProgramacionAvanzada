@@ -5,73 +5,60 @@ void SceneLevel::Init()
 {
 	Scene::Init();
 
-	// El resto
-	/**/
+	std::cout << "Carga de la escena " << nivel << std::endl << std::endl;
 	// // // // Escena
-	std::cout << "Carga de la escena " << nivel << std::endl;
 	SetDrawVertexes(false);
 	SetDrawBox(true);
 	SetBoundary(Vector3D(50 * nivel, 50 * nivel, 100));
-	SetActivo(true);
 	// CAMARA EN CENITAL (60 grados)
 	Camera *camara = new Camera();
-	camara->SetPosition(Vector3D(0, 2 + nivel * 2, 18 * nivel));
+	camara->SetPosition(Vector3D(0, 2 + (3.75 * (nivel - 1)), 20 + (7.5 * (nivel - 1))));
 	camara->SetOrientation(Vector3D(60.0, 0.0, 0.0));
 	SetCamera(*camara);
-	// CARGAR MODELOS
-	*viasTren = loaderVias->GetModel();
-	viasTren->SetPosition(Vector3D(0, 0, 0));
-	viasTren->PaintColor(Color(0.6, 0.3, 0.3));
-
-	vector<Model *> arrayVias;
 	const int mode = 1 + (nivel * 2);
 	desplazamiento = 0.0;
-	for (int i = 0; i < mode; i++) // Creamos las vias y las añadimos
+	incremento = 6.0;
+	for (int i = 0; i < mode; i++) // Creamos las vias y los trenes y las añadimos
 	{
-		viasTren = new Model();
-		*viasTren = loaderVias->GetModel();
-		viasTren->SetPosition(Vector3D(viasTren->GetPosition().GetX(), viasTren->GetPosition().GetY(), viasTren->GetPosition().GetZ() - desplazamiento));
-		viasTren->PaintColor(Color(0.3, 0.3, 0.3));
-		arrayVias.push_back(viasTren);
-		desplazamiento += 7.0;
-		AddGameObject(arrayVias[i]);
-	}
-	for (int i = 0; i < mode; i++) // Creamos los trenes y los añadimos
-	{
-		// Posicion Inicial Aleatoria
-		float randomX = ((rand() % int(GetBoundary().GetX())) - int(GetBoundary().GetX() / 2));
-		// std::cout << (randomX) << std::endl;
+		via = new Model();
+		*via = loaderVias->GetModel();
+		via->SetPosition(Vector3D(via->GetPosition().GetX(), via->GetPosition().GetY(), via->GetPosition().GetZ() - desplazamiento));
+		via->PaintColor(Color(0.3, 0.3, 0.3));
+		AddVia(via);
+		AddGameObject(vias[i]);
+		desplazamiento += incremento;
 
-		tren1M = new Model();
+		// Posicion Inicial Aleatoria
+		float randomX = (rand() % int(GetBoundary().GetX()));
+
+		tren = new Model();
 		if (nivel == 1)
 		{
-			*tren1M = loaderLvl1->GetModel();
-			tren1M->SetPosition(Vector3D(randomX, 1.7, -7.0 * i));
-			tren1M->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
-			tren1M->PaintColor(Color(0.1, 0.1, 0.1));
-			tren1M->SetSpeed(Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
+			*tren = loaderLvl1->GetModel();
+			tren->SetPosition(Vector3D(randomX, 1.7, -incremento * i));
+			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
+			tren->PaintColor(Color(0.1, 0.1, 0.1));
+			tren->SetSpeed(Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
 		}
 		else if (nivel == 2)
 		{
-			tren1M = new Model();
-			*tren1M = loaderLvl2->GetModel();
-			tren1M->SetPosition(Vector3D(randomX, 1.1, -7.0 * i));
-			tren1M->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
-			tren1M->PaintColor(Color(0.73, 0.56, 0.1));
-			tren1M->SetSpeed(Vector3D((i % 2 == 0) ? 0.3 : -0.3, 0.0, 0.0));
+			*tren = loaderLvl2->GetModel();
+			tren->SetPosition(Vector3D(randomX, 1.1, -incremento * i));
+			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
+			tren->PaintColor(Color(0.73, 0.56, 0.1));
+			tren->SetSpeed(Vector3D((i % 2 == 0) ? 0.3 : -0.3, 0.0, 0.0));
 		}
 		else
 		{
-			tren1M = new Model();
-			*tren1M = loaderLvl3->GetModel();
-			tren1M->SetPosition(Vector3D(randomX, 1, -7.0 * i));
-			tren1M->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
-			tren1M->PaintColor(Color(0.4, 0.4, 0.4));
-			tren1M->SetSpeed(Vector3D((i % 2 == 0) ? 1 : -1, 0.0, 0.0));
+			*tren = loaderLvl3->GetModel();
+			tren->SetPosition(Vector3D(randomX, 1, -incremento * i));
+			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
+			tren->PaintColor(Color(0.4, 0.4, 0.4));
+			tren->SetSpeed(Vector3D((i % 2 == 0) ? 1 : -1, 0.0, 0.0));
 		}
 
-		AddTren(tren1M);
-		AddGameObject(tren1M);
+		AddTren(tren);
+		AddGameObject(tren);
 	}
 	// Meta
 	meta = new Cuboid();
@@ -124,12 +111,11 @@ void SceneLevel::checkBoundary()
 	// Cuando llegan los trenes al boundary, se generan nuevas posiciones aleatorias.
 	for (int idx = 0; idx < this->trenes.size(); idx++)
 	{
-		float randomX = ((rand() % int(boundary.GetX() / 2) + 10) + int(boundary.GetX() / 2) + 5);
+		float randomX = ((rand() % int(boundary.GetX() / 2) + boundary.GetX() / 4) + int(boundary.GetX() / 2) + 5);
 		if (idx % 2 == 0)
 		{
 			randomX = -randomX;
 		}
-		// std::cout<<randomX<<std::endl;
 		if (this->trenes[idx]->GetPosition().GetX() < -(this->boundary.GetX()) || this->trenes[idx]->GetPosition().GetX() > this->boundary.GetX())
 		{
 			std::cout << "Variando: " << randomX << std::endl;
@@ -198,7 +184,6 @@ void SceneLevel::checkColisiones()
 		}
 
 		float minXTren, maxXTren, minYTren, maxYTren, minZTren, maxZTren;
-
 		minXTren = this->trenes[i]->GetPosition().GetX() - dimensionesTren->GetX() / 2;
 		maxXTren = this->trenes[i]->GetPosition().GetX() + dimensionesTren->GetX() / 2;
 		minYTren = this->trenes[i]->GetPosition().GetY();
@@ -207,7 +192,6 @@ void SceneLevel::checkColisiones()
 		maxZTren = this->trenes[i]->GetPosition().GetZ() + dimensionesTren->GetZ() / 2;
 
 		// DETECTAR COLISIONES
-
 		bool colisiono = false;
 		if ((minXPersonaje <= maxXTren && minXPersonaje >= minXTren) || (maxXPersonaje <= maxXTren && maxXPersonaje >= minXTren))
 		{
@@ -388,5 +372,4 @@ void SceneLevel::Reset()
 	this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
 	this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
 	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-
 }

@@ -13,7 +13,6 @@ private:
 	bool isTransparent;
 
 public:
-
 	Solid(
 		Vector3D positionArgument = Vector3D(),
 		Color colorArgument = Color(),

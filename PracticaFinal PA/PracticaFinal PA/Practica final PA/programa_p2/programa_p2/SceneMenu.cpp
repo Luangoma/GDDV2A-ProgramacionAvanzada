@@ -5,7 +5,7 @@ void SceneMenu::Init()
 {
 	Scene::Init();
 
-	std::cout << "Carga de la escena menu" << std::endl;
+	std::cout << "Carga de la escena menu" << std::endl << std::endl;
 	// // // // Menu inicial
 	SetDrawVertexes(false);
 	SetDrawBox(true);
@@ -15,23 +15,17 @@ void SceneMenu::Init()
 	camara->SetPosition(Vector3D(5, -2, 20));
 	camara->SetOrientation(Vector3D(15.0, 135.0, 0.0));
 	SetCamera(*camara);
-	// CARGAR MODELOS
-	viasTren = new Model();
-	*viasTren = loaderVias->GetModel();
-	viasTren->SetPosition(Vector3D(0, 0, 0));
-	viasTren->PaintColor(Color(0.3, 0.3, 0.3));
 	// // // MENU
-	vector<Model *> arrayVias;
 	desplazamiento = 0.0;
 	for (int i = 0; i < 3; i++) // Creamos las vias y las anadimos
 	{
-		*viasTren = loaderVias->GetModel();
-		viasTren->SetPosition(Vector3D(viasTren->GetPosition().GetX() + 50, viasTren->GetPosition().GetY(), viasTren->GetPosition().GetZ() + desplazamiento));
-		viasTren->PaintColor(Color(0.3, 0.3, 0.3));
-		arrayVias.push_back(viasTren);
+		via = new Model();
+		*via = loaderVias->GetModel();
+		via->SetPosition(Vector3D(via->GetPosition().GetX() + 50, via->GetPosition().GetY(), via->GetPosition().GetZ() + desplazamiento));
+		via->PaintColor(Color(0.3, 0.3, 0.3));
+		AddVia(via);
 		desplazamiento += 5.0;
-		AddGameObject(arrayVias[i]);
-		viasTren = new Model();
+		AddGameObject(vias[i]);
 	}
 	/**/
 	// Tren del nivel 1
@@ -67,41 +61,31 @@ void SceneMenu::Init()
 	//*/
 	// TEXTO
 	desplazamiento = -1;
-	Text *textoNombre = new Text();
-	textoNombre->SetText("ESCAPE TRAIN");
-	textoNombre->SetPosition(Vector3D(0, desplazamiento, -8));
-	textoNombre->SetColor(Color(1, 1, 1));
-	AddGameObject(textoNombre);
-	desplazamiento -= 1;
-	Text *textoMenu = new Text();
-	textoMenu->SetText("MENU - pulse 0");
-	textoMenu->SetPosition(Vector3D(0, desplazamiento, -8));
-	textoMenu->SetColor(Color(1, 1, 1));
-	AddGameObject(textoMenu);
-	desplazamiento -= 1;
-	Text *textoJugarNivel1 = new Text();
-	textoJugarNivel1->SetText("Jugar Nivel 1 - pulse 1");
-	textoJugarNivel1->SetPosition(Vector3D(0, desplazamiento, -8));
-	textoJugarNivel1->SetColor(Color(1, 1, 1));
-	AddGameObject(textoJugarNivel1);
-	desplazamiento -= 1;
-	Text *textoJugarNivel2 = new Text();
-	textoJugarNivel2->SetText("Jugar Nivel 2 - pulse 2");
-	textoJugarNivel2->SetPosition(Vector3D(0, desplazamiento, -8));
-	textoJugarNivel2->SetColor(Color(1, 1, 1));
-	AddGameObject(textoJugarNivel2);
-	desplazamiento -= 1;
-	Text *textoJugarNivel3 = new Text();
-	textoJugarNivel3->SetText("Jugar Nivel 3 - pulse 3");
-	textoJugarNivel3->SetPosition(Vector3D(0, desplazamiento, -8));
-	textoJugarNivel3->SetColor(Color(1, 1, 1));
-	AddGameObject(textoJugarNivel3);
-	desplazamiento -= 1;
-	Text *textoCreditos = new Text();
-	textoCreditos->SetText("Creditos - pulse 4");
-	textoCreditos->SetPosition(Vector3D(0, desplazamiento, -8));
-	textoCreditos->SetColor(Color(1, 1, 1));
-	AddGameObject(textoCreditos);
+	Text *texto = new Text();
+	texto->SetText("ESCAPE THE TRAIN");
+	titulos.push_back(texto);
+	texto = new Text();
+	texto->SetText("MENU - pulse 0");
+	titulos.push_back(texto);
+	texto = new Text();
+	texto->SetText("Jugar Nivel 1 - pulse 1");
+	titulos.push_back(texto);
+	texto = new Text();
+	texto->SetText("Jugar Nivel 2 - pulse 2");
+	titulos.push_back(texto);
+	texto = new Text();
+	texto->SetText("Jugar Nivel 3 - pulse 3");
+	titulos.push_back(texto);
+	texto = new Text();
+	texto->SetText("Creditos - pulse 4");
+	titulos.push_back(texto);
+	for (int i = 0; i < titulos.size(); i++) // Añadimos los textos
+	{
+		titulos[i]->SetPosition(Vector3D(0, desplazamiento, -8));
+		titulos[i]->SetColor(Color(1, 1, 1));
+		AddGameObject(titulos[i]);
+		desplazamiento--;
+	}
 	// Pared 1 / Cielo
 	cielo = new Cuboid();
 	cielo->SetPosition(Vector3D(GetBoundary().GetX(), GetBoundary().GetY() / 2, 0.0));
@@ -121,6 +105,7 @@ void SceneMenu::Init()
 	cielo->SetWidth(0.2);
 	AddGameObject(cielo);
 }
+
 void SceneMenu::Update(const float &timeIncrement)
 {
 }

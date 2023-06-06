@@ -126,7 +126,7 @@ int main(int argc, char** argv)
     glutMouseFunc(mouseClicked);                                    // tratamiento del evento de clic del ratón
     glutIdleFunc(idle);                                             // para cuando no hay eventos que tratar         
 
-    cout << "Iniciando gráficos..." << endl;
+    cout << "Iniciando graficos..." << endl;
     initGraphics();                                                 // Iniciamos OpenGL
 
     cout << "Iniciando bucle infinito..." << endl;

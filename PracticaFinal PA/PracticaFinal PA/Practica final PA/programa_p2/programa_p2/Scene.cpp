@@ -11,53 +11,38 @@ void Scene::Init()
 
 	if (this->GetDrawVertexes())
 	{
-		/**
-		Cube *point1 = new Cube();
+		/**/
+		Cuboid *point1 = new Cuboid();
 		point1->SetColor(Color(0, 0, 1));
 		point1->SetPosition(Vector3D(0, 0, 0));
-		point1->SetSize(0.2);
 		this->AddGameObject(point1);
-
-		Cube *point2 = new Cube();
+		Cuboid *point2 = new Cuboid();
 		point2->SetColor(Color(0, 0, 1));
 		point2->SetPosition(Vector3D(this->GetBoundary().GetX(), 0, 0));
-		point2->SetSize(0.2);
 		this->AddGameObject(point2);
-
-		Cube *point3 = new Cube();
+		Cuboid *point3 = new Cuboid();
 		point3->SetColor(Color(0, 0, 1));
 		point3->SetPosition(Vector3D(this->GetBoundary().GetX(), this->GetBoundary().GetY(), 0));
-		point3->SetSize(0.2);
 		this->AddGameObject(point3);
-
-		Cube *point4 = new Cube();
+		Cuboid *point4 = new Cuboid();
 		point4->SetColor(Color(0, 0, 1));
 		point4->SetPosition(Vector3D(0, this->GetBoundary().GetY(), 0));
-		point4->SetSize(0.2);
 		this->AddGameObject(point4);
-
-		Cube *point5 = new Cube();
+		Cuboid *point5 = new Cuboid();
 		point5->SetColor(Color(0, 0, 1));
 		point5->SetPosition(Vector3D(0, this->GetBoundary().GetY(), this->GetBoundary().GetZ()));
-		point5->SetSize(0.2);
 		this->AddGameObject(point5);
-
-		Cube *point6 = new Cube();
+		Cuboid *point6 = new Cuboid();
 		point6->SetColor(Color(0, 0, 1));
 		point6->SetPosition(Vector3D(this->GetBoundary().GetX(), this->GetBoundary().GetY(), this->GetBoundary().GetZ()));
-		point6->SetSize(0.2);
 		this->AddGameObject(point6);
-
-		Cube *point7 = new Cube();
+		Cuboid *point7 = new Cuboid();
 		point7->SetColor(Color(0, 0, 1));
 		point7->SetPosition(Vector3D(this->GetBoundary().GetX(), 0, this->GetBoundary().GetZ()));
-		point7->SetSize(0.2);
 		this->AddGameObject(point7);
-
-		Cube *point8 = new Cube();
+		Cuboid *point8 = new Cuboid();
 		point8->SetColor(Color(0, 0, 1));
 		point8->SetPosition(Vector3D(0, 0, this->GetBoundary().GetZ()));
-		point8->SetSize(0.2);
 		this->AddGameObject(point8);
 		//*/
 	}
@@ -66,32 +51,33 @@ void Scene::Init()
 	// Carga del modelo 'viastren' (generico para los niveles)
 	loaderVias = new ModelLoader();
 	loaderVias->LoadModel("..\\..\\3dModels\\viasTren.obj");
-	std::cout << "Carga de viasTren" << std::endl;
+	std::cout << "Carga de las vias" << std::endl;
 
 	// Carga del modelo 'TrenLvl1' (tren del nivel 1)
-	// Model* trenLvl1 = new Model();
 	loaderLvl1 = new ModelLoader();
 	loaderLvl1->LoadModel("..\\..\\3dModels\\TrenLvl1.obj");
-	std::cout << "Carga de TrenLvl1" << std::endl;
+	std::cout << "Carga del tren de nivel 1" << std::endl;
 
 	// Carga del modelo 'TrenLvl2' (tren del nivel 2)
-	// Model* trenLvl2 = new Model();
 	loaderLvl2 = new ModelLoader();
 	loaderLvl2->LoadModel("..\\..\\3dModels\\TrenLvl2.obj");
-	std::cout << "Carga de TrenLvl2" << std::endl;
+	std::cout << "Carga del tren de nivel 2" << std::endl;
 
 	// Carga del modelo 'TrenLvl3' (tren del nivel 3)
-	// Model* trenLvl3 = new Model();
 	loaderLvl3 = new ModelLoader();
 	loaderLvl3->LoadModel("..\\..\\3dModels\\TrenLvl3.obj");
-	std::cout << "Carga de TrenLvl3" << std::endl;
+	std::cout << "Carga del tren de nivel 3" << std::endl;
 
 	// Carga del modelo 'Cop' (Jugador)
-	// Model* personaje = new Model();
 	loaderPersonaje = new ModelLoader();
 	loaderPersonaje->LoadModel("..\\..\\3dModels\\Cop.obj");
-	std::cout << "Carga de Cop" << std::endl
-			  << std::endl;
+	std::cout << "Carga del personaje" << std::endl;
+
+	// Inicializacion de tren
+	tren = new Model();
+	// Inicializacion de personaje
+	personaje = new Model();
+	*personaje = loaderPersonaje->GetModel();
 
 	/**
 	// Tren del nivel 1
@@ -122,18 +108,6 @@ void Scene::Init()
 	AddTren(tren3M);
 	AddGameObject(tren3M);
 	//*/
-
-	// Personaje
-	personaje = new Model();
-	*personaje = loaderPersonaje->GetModel();
-	personaje->SetPosition(Vector3D(-15, 0.5, -5));
-	personaje->SetOrientation(Vector3D(0.0, 160.0, 0.0));
-	personaje->PaintColor(Color(0.2, 0.3, 0.8));
-	AddGameObject(personaje);
-	AddPersonaje(personaje);
-
-	// Vias
-	viasTren = new Model();
 }
 
 void Scene::Update(const float &timeIncrement)
@@ -171,7 +145,9 @@ void Scene::ProcessMouseClick(int button, int state, int x, int y)
 	// cout << "Clic del mouse: " << button << " " << state << " " << x << " " << y << endl;
 }
 
-void Scene::Reset(){}
+void Scene::Reset()
+{
+}
 
 int Scene::CheckStatus()
 {

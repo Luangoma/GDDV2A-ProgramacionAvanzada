@@ -9,14 +9,14 @@
 class SceneLevel : public Scene
 {
 private:
+    int nivel;
     Cuboid *meta;
     bool activo, estadoGanar, estadoPerder;
-    int nivel;
     void checkBoundary();
 
 public:
-    SceneLevel(bool activoArgument = true, int nivelToSet = 1) : Scene(), activo(activoArgument),
-                                                                 nivel(nivelToSet), estadoGanar(false), estadoPerder(false)
+    SceneLevel(bool activoArgument = true, int nivelToSet = 1) : 
+    Scene(), activo(activoArgument), nivel(nivelToSet), estadoGanar(false), estadoPerder(false)
     {
         std::cout << "Constructor de nivel, nivel = " << nivel << std::endl;
     }

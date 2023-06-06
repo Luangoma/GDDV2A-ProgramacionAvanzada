@@ -9,7 +9,7 @@ private:
     float height;
     float width;
 public:
-    Cuboid() : length(0.4), height(0.2), width(0.1), Solid(Vector3D(), Color(0.2, 0.5, 0.1)) {}
+    Cuboid() : length(0.2), height(0.2), width(0.2), Solid(Vector3D(), Color(0.2, 0.5, 0.1)) {}
 
     inline float GetLength() const { return this->length; }
     inline void SetLength(const float& lengthToSet) { this->length = lengthToSet; }
