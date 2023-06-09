@@ -1,6 +1,6 @@
 #pragma once
 #include "Model.h"
-class PowerUp {
+class PowerUp : public Solid {
 private:
     float multiplicador;
     Model modelo;

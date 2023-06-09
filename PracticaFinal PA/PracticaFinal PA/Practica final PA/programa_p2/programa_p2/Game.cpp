@@ -84,6 +84,8 @@ void Game::Init()
 	sceneOverLoser->Init();
 	this->scenes.push_back(sceneOverLoser);
 
+	std::cout << "Escenas cargadas: "<< scenes.size() << std::endl;
+	this->activeScene = this->scenes[0];
 	/**
 	// // // //Menú inicial
 	Scene* scene0 = new Scene();
@@ -509,8 +511,6 @@ void Game::Init()
 	this->scenes.push_back(scene3);
 	this->scenes.push_back(scene4);
 	//*/
-	std::cout << "Escenas cargadas: "<< scenes.size() << std::endl;
-	this->activeScene = this->scenes[0];
 }
 
 void Game::Render()

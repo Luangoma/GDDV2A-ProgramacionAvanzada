@@ -1,6 +1,7 @@
 #pragma once
 #include "Model.h"
 #include "ModelLoader.h"
+#include "Solid.h"
 class Tren //: public Model
 {
 private:
@@ -20,4 +21,9 @@ public:
     // METODOS COMUNES A TODOS LOS TRENES.
     void AddToScene();
     void Render();
+};
+
+class Enemy :
+    public Solid
+{
 };

@@ -224,7 +224,7 @@ void SceneLevel::checkColisiones()
 
 void SceneLevel::haPerdido()
 {
-	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	personajeActivo->Parar();
 	estadoPerder = true;
 
 	/**
@@ -256,7 +256,7 @@ void SceneLevel::haPerdido()
 
 void SceneLevel::haGanado()
 {
-	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	personajeActivo->Parar();
 	estadoGanar = true;
 	/**
 	Text* textoGanado = new Text();
@@ -287,66 +287,67 @@ void SceneLevel::Update(const float &timeIncrement)
 
 void SceneLevel::ProcessKeyPressed(unsigned char key, int px, int py)
 {
-	if (activo)
-	{
-		switch (key)
-		{
-		case 'w':
-			// mover el personajeActivo hacia adelante
-			this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, -0.1));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 180.0, 0.0));
-			break;
-		case 's':
-			// mover el personajeActivo hacia atras
-			this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.1));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 0.0, 0.0));
-			break;
-		case 'a':
-			// mover el personajeActivo hacia la izquierda
-			this->personajeActivo->SetSpeed(Vector3D(-0.1, 0.0, 0.0));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 270.0, 0.0));
-			break;
-		case 'd':
-			// mover el personajeActivo hacia la derecha
-			this->personajeActivo->SetSpeed(Vector3D(0.1, 0.0, 0.0));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 90.0, 0.0));
-			break;
-		case 'W':
-			// mover el objeto hacia adelante
-			this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, -0.1));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 180.0, 0.0));
-			break;
-		case 'S':
-			// mover el personajeActivo hacia atras
-			this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.1));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 0.0, 0.0));
-			break;
-		case 'A':
-			// mover el personajeActivo hacia la izquierda
-			this->personajeActivo->SetSpeed(Vector3D(-0.1, 0.0, 0.0));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 270.0, 0.0));
-			break;
-		case 'D':
-			// mover el personajeActivo hacia la derecha
-			this->personajeActivo->SetSpeed(Vector3D(0.1, 0.0, 0.0));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 90.0, 0.0));
-			break;
-		default:
-			break;
-		}
-	}
-	else
-	{
-		/* if (key == 'R' || key == 'r')
-		{
-			// REINICIAR EL JUEGO.
-			this->estadoGanar = false;
-			this->estadoPerder = false;
-			this->activo = true;
-			this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
-			this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
-		} */
-	}
+	personajeActivo->ProcessKeyPressed(key, px, py);
+	// if (activo)
+	// {
+	// 	switch (key)
+	// 	{
+	// 	case 'w':
+	// 		// mover el personajeActivo hacia adelante
+	// 		this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, -0.1));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0.0, 180.0, 0.0));
+	// 		break;
+	// 	case 's':
+	// 		// mover el personajeActivo hacia atras
+	// 		this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.1));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0.0, 0.0, 0.0));
+	// 		break;
+	// 	case 'a':
+	// 		// mover el personajeActivo hacia la izquierda
+	// 		this->personajeActivo->SetSpeed(Vector3D(-0.1, 0.0, 0.0));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0.0, 270.0, 0.0));
+	// 		break;
+	// 	case 'd':
+	// 		// mover el personajeActivo hacia la derecha
+	// 		this->personajeActivo->SetSpeed(Vector3D(0.1, 0.0, 0.0));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0.0, 90.0, 0.0));
+	// 		break;
+	// 	case 'W':
+	// 		// mover el objeto hacia adelante
+	// 		this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, -0.1));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0.0, 180.0, 0.0));
+	// 		break;
+	// 	case 'S':
+	// 		// mover el personajeActivo hacia atras
+	// 		this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.1));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0.0, 0.0, 0.0));
+	// 		break;
+	// 	case 'A':
+	// 		// mover el personajeActivo hacia la izquierda
+	// 		this->personajeActivo->SetSpeed(Vector3D(-0.1, 0.0, 0.0));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0.0, 270.0, 0.0));
+	// 		break;
+	// 	case 'D':
+	// 		// mover el personajeActivo hacia la derecha
+	// 		this->personajeActivo->SetSpeed(Vector3D(0.1, 0.0, 0.0));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0.0, 90.0, 0.0));
+	// 		break;
+	// 	default:
+	// 		break;
+	// 	}
+	// }
+	// else
+	// {
+	// 	/* if (key == 'R' || key == 'r')
+	// 	{
+	// 		// REINICIAR EL JUEGO.
+	// 		this->estadoGanar = false;
+	// 		this->estadoPerder = false;
+	// 		this->activo = true;
+	// 		this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
+	// 		this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
+	// 	} */
+	// }
 }
 
 int SceneLevel::CheckStatus()
@@ -372,7 +373,5 @@ void SceneLevel::Reset()
 	this->estadoGanar = false;
 	this->estadoPerder = false;
 	this->activo = true;
-	this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
-	this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
-	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	personajeActivo->Reset();
 }

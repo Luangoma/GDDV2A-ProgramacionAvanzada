@@ -142,9 +142,12 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cuboid.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="programa_p2.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -154,7 +157,6 @@
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="Solid.cpp" />
     <ClCompile Include="Text.cpp" />
-    <ClCompile Include="Tren.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
@@ -162,9 +164,12 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cuboid.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelLoader.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneCreditos.h" />
@@ -173,7 +178,6 @@
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Solid.h" />
     <ClInclude Include="Text.h" />
-    <ClInclude Include="Tren.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector3D.h" />
   </ItemGroup>

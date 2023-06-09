@@ -121,9 +121,8 @@ void Scene::Init()
 	std::cout << "Carga del personaje" << std::endl;
 
 	// Inicializacion de personaje
-	personaje = new Model();
-	*personaje = loaderPersonaje->GetModel();
-	personaje->PaintColor(Color(0.2, 0.3, 0.8));
+	personaje = new Player();
+	personaje->SetModel(loaderPersonaje->GetModel());
 
 	/**
 	// Tren del nivel 1
