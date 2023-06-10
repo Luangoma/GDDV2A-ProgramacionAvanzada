@@ -1,22 +1,24 @@
 #pragma once
 #include "Model.h"
-class PowerUp : public Solid {
+#include "ModelLoader.h"
+
+class PowerUP
+{
 private:
-    float multiplicador;
+    ModelLoader* cargador;
     Model modelo;
-    
+
 public:
-    PowerUp(float multiplicadorToSet = 1.25) : multiplicador(multiplicadorToSet) {};
+    PowerUP() {}
 
-	// GETTERS
-    inline float GetMultiplicador() const { return this->multiplicador; }
-    inline Model GetModel() const { return this->modelo; }
-
-	// SETTERS
-	inline void SetMultiplicador(const float& multiplicadorToSet) { this->multiplicador = multiplicadorToSet; }
-	inline void SetModel(const Model& modeloToSet) { this->modelo = modeloToSet; }
-
-    void Update(const float& timeIncrement);
+    //Siempre se debe ejecutar al crear el personaje.
     void Init();
+
+    // Metodos virtuales de Solid
+    void Render();
+    void Update(const float& timeIncrement);
+
+    void Reset(); // Volver a ponerlo al principio del nivel.
+    inline void SetModel(const Model& modelToSet) { modelo = modelToSet; }
 };
 

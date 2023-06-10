@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cuboid.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -162,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Coin.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cuboid.h" />
     <ClInclude Include="Enemy.h" />
