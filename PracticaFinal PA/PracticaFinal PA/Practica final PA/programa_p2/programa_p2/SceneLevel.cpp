@@ -70,12 +70,10 @@ void SceneLevel::Init()
 	meta->SetWidth(0.2);
 	AddGameObject(meta);
 	SetMeta(meta);
+	
 	// Personaje
-	personaje->SetPosition(Vector3D(0, 0.5, 5));
-	personaje->SetOrientation(Vector3D(0.0, 180.0, 0.0));
-	personaje->PaintColor(Color(0.2, 0.3, 0.8));
-	AddGameObject(personaje);
-	AddPersonaje(personaje);
+	jugador = new Player(loaderPersonaje->GetModel(), Vector3D(0.0, 0.5, 5.0));
+	AddGameObject(jugador);
 	//*/
 }
 
@@ -132,34 +130,34 @@ void SceneLevel::checkColisiones()
 
 	// COMPROBAR ROTACION DEL PERSONAJE PARA EL CALCULO DE LAS COLISIONES.
 	// Cuando el personaje rota las dimension se intercambian entre los ejes X y Z.
-	if (personajeActivo->GetOrientation().GetY() == 180.0) // FRENTE / S
+	if (jugador->GetOrientation().GetY() == 180.0) // FRENTE / S
 	{
 		dimensionesPersonaje->SetZ(3.73);
 		dimensionesPersonaje->SetX(1.78);
 	}
-	else if (personajeActivo->GetOrientation().GetY() == 0.0) // ATRAS / S
+	else if (jugador->GetOrientation().GetY() == 0.0) // ATRAS / S
 	{
 		dimensionesPersonaje->SetZ(3.73);
 		dimensionesPersonaje->SetX(1.78);
 	}
-	else if (personajeActivo->GetOrientation().GetY() == 270.0) // IZQUIERDA / A
+	else if (jugador->GetOrientation().GetY() == 270.0) // IZQUIERDA / A
 	{
 		dimensionesPersonaje->SetZ(1.78);
 		dimensionesPersonaje->SetX(3.73);
 	}
-	else if (personajeActivo->GetOrientation().GetY() == 90.0) // DERECHA / D
+	else if (jugador->GetOrientation().GetY() == 90.0) // DERECHA / D
 	{
 		dimensionesPersonaje->SetZ(1.78);
 		dimensionesPersonaje->SetX(3.73);
 	}
 
 	float minXPersonaje, maxXPersonaje, minYPersonaje, maxYPersonaje, minZPersonaje, maxZPersonaje;
-	minXPersonaje = this->personajeActivo->GetPosition().GetX() - dimensionesPersonaje->GetX() / 2;
-	maxXPersonaje = this->personajeActivo->GetPosition().GetX() + dimensionesPersonaje->GetX() / 2;
-	minYPersonaje = this->personajeActivo->GetPosition().GetY();
-	maxYPersonaje = this->personajeActivo->GetPosition().GetY() + dimensionesPersonaje->GetY();
-	minZPersonaje = this->personajeActivo->GetPosition().GetZ() - dimensionesPersonaje->GetZ() / 2;
-	maxZPersonaje = this->personajeActivo->GetPosition().GetZ() + dimensionesPersonaje->GetZ() / 2;
+	minXPersonaje = this->jugador->GetPosition().GetX() - dimensionesPersonaje->GetX() / 2;
+	maxXPersonaje = this->jugador->GetPosition().GetX() + dimensionesPersonaje->GetX() / 2;
+	minYPersonaje = this->jugador->GetPosition().GetY();
+	maxYPersonaje = this->jugador->GetPosition().GetY() + dimensionesPersonaje->GetY();
+	minZPersonaje = this->jugador->GetPosition().GetZ() - dimensionesPersonaje->GetZ() / 2;
+	maxZPersonaje = this->jugador->GetPosition().GetZ() + dimensionesPersonaje->GetZ() / 2;
 
 	for (int i = 0; i < this->trenes.size(); i++)
 	{
@@ -221,7 +219,7 @@ void SceneLevel::checkColisiones()
 
 void SceneLevel::haPerdido()
 {
-	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	this->jugador->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	estadoPerder = true;
 
 	/**
@@ -253,7 +251,7 @@ void SceneLevel::haPerdido()
 
 void SceneLevel::haGanado()
 {
-	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	this->jugador->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	estadoGanar = true;
 	/**
 	Text* textoGanado = new Text();
@@ -286,63 +284,20 @@ void SceneLevel::ProcessKeyPressed(unsigned char key, int px, int py)
 {
 	if (activo)
 	{
-		switch (key)
-		{
-		case 'w':
-			// mover el personajeActivo hacia adelante
-			this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, -0.1));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 180.0, 0.0));
-			break;
-		case 's':
-			// mover el personajeActivo hacia atras
-			this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.1));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 0.0, 0.0));
-			break;
-		case 'a':
-			// mover el personajeActivo hacia la izquierda
-			this->personajeActivo->SetSpeed(Vector3D(-0.1, 0.0, 0.0));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 270.0, 0.0));
-			break;
-		case 'd':
-			// mover el personajeActivo hacia la derecha
-			this->personajeActivo->SetSpeed(Vector3D(0.1, 0.0, 0.0));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 90.0, 0.0));
-			break;
-		case 'W':
-			// mover el objeto hacia adelante
-			this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, -0.1));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 180.0, 0.0));
-			break;
-		case 'S':
-			// mover el personajeActivo hacia atras
-			this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.1));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 0.0, 0.0));
-			break;
-		case 'A':
-			// mover el personajeActivo hacia la izquierda
-			this->personajeActivo->SetSpeed(Vector3D(-0.1, 0.0, 0.0));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 270.0, 0.0));
-			break;
-		case 'D':
-			// mover el personajeActivo hacia la derecha
-			this->personajeActivo->SetSpeed(Vector3D(0.1, 0.0, 0.0));
-			this->personajeActivo->SetOrientation(Vector3D(0.0, 90.0, 0.0));
-			break;
-		default:
-			break;
-		}
+		jugador->ProcessKeyPressed(key,px,py);
 	}
 	else
 	{
-		/* if (key == 'R' || key == 'r')
+		/**
+		if (key == 'R' || key == 'r')
 		{
 			// REINICIAR EL JUEGO.
 			this->estadoGanar = false;
 			this->estadoPerder = false;
 			this->activo = true;
-			this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
-			this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
-		} */
+			this->jugador->Reset();
+		}
+		//*/
 	}
 }
 
@@ -369,7 +324,5 @@ void SceneLevel::Reset()
 	this->estadoGanar = false;
 	this->estadoPerder = false;
 	this->activo = true;
-	this->personajeActivo->SetPosition(Vector3D(0, 0.5, 5));
-	this->personajeActivo->SetOrientation(Vector3D(0, 180, 0));
-	this->personajeActivo->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	this->jugador->Reset();
 }

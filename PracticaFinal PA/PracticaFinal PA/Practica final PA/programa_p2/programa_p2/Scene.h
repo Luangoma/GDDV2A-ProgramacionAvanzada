@@ -5,6 +5,7 @@
 #include "Model.h"
 #include "Cuboid.h"
 #include "Text.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -22,8 +23,8 @@ protected:
 	vector<Solid *> trenes, vias; // Trenes y vias
 
 	ModelLoader *loader, *loaderVias, *loaderLvl1, *loaderLvl2, *loaderLvl3, *loaderPersonaje;
-	Model *via, *tren, *personaje;
-	Solid *personajeActivo;
+	Model *via, *tren;
+	Player *jugador;
 
 public:
 	Scene(Vector3D boundaryArgument = Vector3D(10, 8, 10), bool drawVertexesArgument = false, bool drawBoxArgument = true) : 
@@ -45,9 +46,9 @@ public:
 
 	// OTROS METODOS
 	inline void AddGameObject(Solid *gameObject) { this->gameObjects.push_back(gameObject); }
-	inline void AddVia(Solid* via) { this->vias.push_back(via); }
+	inline void AddVia(Solid *via) { this->vias.push_back(via); }
 	inline void AddTren(Solid *tren) { this->trenes.push_back(tren); }
-	inline void AddPersonaje(Solid *personaje) { this->personajeActivo = personaje; }
+	inline void AddPersonaje(Player *personaje) { this->jugador = personaje; }
 
 	void Init();
 	void Render();

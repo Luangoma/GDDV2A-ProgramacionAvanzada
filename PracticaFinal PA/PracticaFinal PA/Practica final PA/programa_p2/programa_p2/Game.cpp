@@ -62,8 +62,7 @@ void Game::Init()
 	SceneLevel *sceneLevelNivel3 = new SceneLevel(true, 3);
 	sceneLevelNivel3->Init();
 	this->scenes.push_back(sceneLevelNivel3);
-	//*/
-	/**
+	/**/
 	SceneLevel *sceneLevel;
 	for (int i = 1; i <= 3; i++)
 	{
@@ -74,7 +73,7 @@ void Game::Init()
 	SceneCreditos *sceneFinal = new SceneCreditos();
 	sceneFinal->Init();
 	this->scenes.push_back(sceneFinal);
-
+	/**/
 	SceneGameOver *sceneOverWinner = new SceneGameOver(true);
 	sceneOverWinner->Init();
 	this->scenes.push_back(sceneOverWinner);

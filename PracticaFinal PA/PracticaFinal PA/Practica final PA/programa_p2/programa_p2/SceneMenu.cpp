@@ -53,11 +53,8 @@ void SceneMenu::Init()
 	AddTren(tren3M);
 	AddGameObject(tren3M);
 	// Personaje
-	personaje->SetPosition(Vector3D(-15, 0.5, -5));
-	personaje->SetOrientation(Vector3D(0.0, 160.0, 0.0));
-	personaje->PaintColor(Color(0.2, 0.3, 0.8));
-	AddGameObject(personaje);
-	AddPersonaje(personaje);
+	jugador = new Player(loaderPersonaje->GetModel(), Vector3D(-15, 0.5, -5), Vector3D(0.0, 160.0, 0.0), true);
+	AddGameObject(jugador);
 	//*/
 	// TEXTO
 	desplazamiento = -1;
@@ -105,11 +102,7 @@ void SceneMenu::Init()
 	cielo->SetWidth(0.2);
 	AddGameObject(cielo);
 }
-
-void SceneMenu::Update(const float &timeIncrement)
-{
-}
-
 void SceneMenu::ProcessKeyPressed(unsigned char key, int px, int py)
 {
+	//Scene::ProcessKeyPressed(key,px,py);
 }

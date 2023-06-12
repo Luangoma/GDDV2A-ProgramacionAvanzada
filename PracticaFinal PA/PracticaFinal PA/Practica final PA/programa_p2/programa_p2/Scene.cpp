@@ -71,13 +71,12 @@ void Scene::Init()
 	// Carga del modelo 'Cop' (Jugador)
 	loaderPersonaje = new ModelLoader();
 	loaderPersonaje->LoadModel("..\\..\\3dModels\\Cop.obj");
-	std::cout << "Carga del personaje" << std::endl;
 
 	// Inicializacion de tren
 	tren = new Model();
 	// Inicializacion de personaje
-	personaje = new Model();
-	*personaje = loaderPersonaje->GetModel();
+	//jugador = new Player();
+	//jugador->Init();
 
 	/**
 	// Tren del nivel 1
@@ -133,6 +132,7 @@ void Scene::Render()
 void Scene::ProcessKeyPressed(unsigned char key, int px, int py)
 {
 	// cout << "Tecla pulsada: " << x << ", " << y << endl;
+	jugador->ProcessKeyPressed(key,px,py);
 }
 
 void Scene::ProcessMouseMovement(int x, int y)

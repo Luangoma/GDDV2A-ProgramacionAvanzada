@@ -23,10 +23,10 @@ public:
 
     void Init();
 
-    inline void SetNivel(const int &nivelToSet) { this->nivel = nivelToSet; };
+    inline void SetNivel(const int &nivelToSet) { this->nivel = nivelToSet; }; //DEPRECATED - Revisar
     inline void SetMeta(Cuboid *metaToSet) { this->meta = metaToSet; }
-    inline void SetActivo(bool activoToSet) { this->activo = activoToSet; }
-    inline void SetStatus(bool statusToSet) { this->estadoGanar = statusToSet; this->estadoPerder = statusToSet; }
+    inline void SetActivo(bool activoToSet) { this->activo = activoToSet; } //DEPRECATED - Revisar
+    inline void SetStatus(bool statusToSet) { this->estadoGanar = statusToSet; this->estadoPerder = statusToSet; } //DEPRECATED - Revisar
 
     int CheckStatus();
     void Update(const float &timeIncrement);

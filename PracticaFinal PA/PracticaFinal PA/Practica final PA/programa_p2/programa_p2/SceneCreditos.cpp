@@ -54,11 +54,8 @@ void SceneCreditos::Init()
 	AddTren(tren);
 	AddGameObject(tren);
 	// Personaje
-	personaje->SetPosition(Vector3D(5, 0, -5));
-	personaje->SetOrientation(Vector3D(0, -90, 0));
-	personaje->PaintColor(Color(0.2, 0.3, 0.8));
-	AddGameObject(personaje);
-	AddPersonaje(personaje);
+	jugador = new Player(loaderPersonaje->GetModel(), Vector3D(5, 0, -5), Vector3D(0, -90, 0));
+	AddGameObject(jugador);
 	// Texto
 	desplazamiento = -(incremento / 2);
 	Text *texto = new Text();

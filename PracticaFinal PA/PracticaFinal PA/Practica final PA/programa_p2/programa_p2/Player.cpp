@@ -1,20 +1,6 @@
 #include <iostream>
 #include "Player.h"
 
-void Player::Init()
-{
-    //Cargar modelo del personaje.
-	// Carga del modelo 'Cop' (Jugador)
-	loader = new ModelLoader();
-	loader->LoadModel("..\\..\\3dModels\\Cop.obj");
-	std::cout << "Carga del personaje" << std::endl;
-    modelo = loader->GetModel();
-    //Propiedades iniciales del personaje.
-    modelo.SetPosition(Vector3D(0, 0.5, 5));
-    modelo.SetOrientation(Vector3D(0, 180, 0));
-    modelo.SetColor(Color(0.2, 0.3, 0.8));
-}
-
 void Player::Render() 
 {
     modelo.Render();
@@ -75,14 +61,9 @@ void Player::ProcessKeyPressed(unsigned char key, int px, int py)
 	}
 }
 
-void Player::Parar()
-{
-    modelo.SetSpeed(Vector3D(0, 0, 0));
-}
-
 void Player::Reset()
 {
-    modelo.SetPosition(Vector3D(0, 0.5, 5));
-    modelo.SetOrientation(Vector3D(0, 180, 0));
-    Parar();
+    modelo.SetPosition(GetPosition());
+	modelo.SetOrientation(GetOrientation());
+	modelo.SetSpeed(Vector3D(0, 0, 0));
 }
