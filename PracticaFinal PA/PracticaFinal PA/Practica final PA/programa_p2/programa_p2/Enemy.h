@@ -1,16 +1,18 @@
 #pragma once
 #include "Solid.h"
 #include "Model.h"
+#include "Player.h"
 
 class Enemy : public Solid
 {
 private:
     Model modelo;
-    Model player;
+    Player* player;
+    Vector3D position;
 
 public:
-    Enemy(Model modelToSet, Model& playerToSet, Vector3D positionToSet = Vector3D(0.0, 0.0, 0.0), bool vivoToSet = true)
-        : modelo(modelToSet), player(playerToSet)
+    Enemy(Model modelToSet, Player* playerToSet, Vector3D positionToSet = Vector3D(0.0, 0.0, 0.0), bool vivoToSet = true)
+        : modelo(modelToSet), player(playerToSet), position(positionToSet)
     {
         SetPosition(positionToSet);
         modelo.SetPosition(positionToSet);

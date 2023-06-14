@@ -7,10 +7,11 @@ class Player : public Solid
 private:
     Model modelo;
     bool vivo;
+    Vector3D position, rotation;
 
 public:
     Player(Model modelToSet, Vector3D positionToSet = Vector3D(0.0, 0.0, 0.0), Vector3D rotationToSet = Vector3D(0.0, 180.0, 0.0), bool vivoToSet = true) 
-        : modelo(modelToSet), vivo(vivoToSet)
+        : modelo(modelToSet), vivo(vivoToSet), position(positionToSet), rotation(rotationToSet)
     { 
         SetPosition(positionToSet);
         SetOrientation(rotationToSet);
@@ -25,7 +26,8 @@ public:
     void ProcessKeyPressed(unsigned char key, int px, int py);
     
     void Reset(); // Volver a ponerlo al principio del nivel.
-
+    /**/
     inline Vector3D GetPosition() { return modelo.GetPosition(); }
     inline Vector3D GetOrientation() { return modelo.GetOrientation(); }
+    //*/
 };

@@ -35,7 +35,7 @@ void SceneCreditos::Init()
 	tren->SetPosition(Vector3D(15.0, 1.7, 0.0));
 	tren->SetOrientation(Vector3D(0.0, 0.0, 0.0));
 	tren->PaintColor(Color(0.1, 0.1, 0.1));
-	AddTren(tren);
+	AddObstaculo(tren);
 	AddGameObject(tren);
 	// Tren del nivel 2
 	tren = new Model();
@@ -43,7 +43,7 @@ void SceneCreditos::Init()
 	tren->SetPosition(Vector3D(25.0, 1.1, 5.0));
 	tren->SetOrientation(Vector3D(0.0, 0.0, 0.0));
 	tren->PaintColor(Color(0.73, 0.56, 0.1));
-	AddTren(tren);
+	AddObstaculo(tren);
 	AddGameObject(tren);
 	// Tren del nivel 3
 	tren = new Model();
@@ -51,7 +51,7 @@ void SceneCreditos::Init()
 	tren->SetPosition(Vector3D(30, 1.0, 10.0));
 	tren->SetOrientation(Vector3D(0.0, 0.0, 0.0));
 	tren->PaintColor(Color(0.4, 0.42, 0.4));
-	AddTren(tren);
+	AddObstaculo(tren);
 	AddGameObject(tren);
 	// Personaje
 	jugador = new Player(loaderPersonaje->GetModel(), Vector3D(5, 0, -5), Vector3D(0, -90, 0));
