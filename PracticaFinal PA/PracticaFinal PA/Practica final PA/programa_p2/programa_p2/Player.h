@@ -1,7 +1,6 @@
 #pragma once
 #include "Solid.h"
 #include "Model.h"
-#include "ModelLoader.h"
 
 class Player : public Solid
 {
@@ -26,7 +25,6 @@ public:
     void ProcessKeyPressed(unsigned char key, int px, int py);
     
     void Reset(); // Volver a ponerlo al principio del nivel.
-    inline void SetModel(const Model modelToSet) { modelo = modelToSet; }
 
     inline Vector3D GetPosition() { return modelo.GetPosition(); }
     inline Vector3D GetOrientation() { return modelo.GetOrientation(); }

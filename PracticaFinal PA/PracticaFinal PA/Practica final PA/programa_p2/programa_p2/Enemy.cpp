@@ -1,17 +1,5 @@
 #include "Enemy.h"
 
-void Enemy::Init()
-{
-	//Cargar modelo del personaje.
-	cargador = new ModelLoader();
-	cargador->LoadModel("..\\..\\3dModels\\Policia.obj");
-	modelo = cargador->GetModel();
-	//Propiedades iniciales del personaje.
-	modelo.SetPosition(Vector3D(0, 0.5, 5));
-	modelo.SetOrientation(Vector3D(0, 0, 0));
-	modelo.SetColor(Color(0.8, 0.3, 0.2));
-}
-
 void Enemy::Render()
 {
 	modelo.Render();
@@ -45,6 +33,5 @@ void Enemy::Update(const float& timeIncrement)
 
 void Enemy::Reset()
 {
-	modelo.SetPosition(Vector3D(0, 0.5, 5));
-	modelo.SetOrientation(Vector3D(0, 180, 0));
+	modelo.SetPosition(GetPosition());
 }
