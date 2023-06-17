@@ -27,7 +27,7 @@ void SceneMenu::Init()
 		desplazamiento += 5.0;
 		AddGameObject(vias[i]);
 	}
-	/**/
+	/**
 	// Tren del nivel 1
 	Model *tren1M = new Model();
 	*tren1M = loaderLvl1->GetModel();
@@ -52,6 +52,34 @@ void SceneMenu::Init()
 	tren3M->PaintColor(Color(0.4, 0.42, 0.4));
 	AddObstaculo(tren3M);
 	AddGameObject(tren3M);
+	tren = new Model();
+	//*/
+	obstaculo = new Obstacle(
+	loaderLvl1->GetModel(),
+		Vector3D(15.0, 1.7, 0.0),
+		Vector3D(0.0, 0.0, 0.0),
+		Color(0.1, 0.1, 0.1),
+		Vector3D(0.0, 0.0, 0.0));	
+	AddObstaculo(obstaculo);
+	AddGameObject(obstaculo);
+	obstaculo = new Obstacle(
+	loaderLvl2->GetModel(),
+		Vector3D(25.0, 1.1, 5.0),
+		Vector3D(0.0, 0.0, 0.0),
+		Color(0.73, 0.56, 0.1),
+		Vector3D(0.0, 0.0, 0.0));	
+	AddObstaculo(obstaculo);
+	AddGameObject(obstaculo);
+	obstaculo = new Obstacle(
+	loaderLvl3->GetModel(),
+		Vector3D(30, 1.0, 10.0),
+		Vector3D(0.0, 0.0, 0.0),
+		Color(0.4, 0.4, 0.4),
+		Vector3D(0.0, 0.0, 0.0));	
+	AddObstaculo(obstaculo);
+	AddGameObject(obstaculo);
+		//*/
+	
 	// Personaje
 	jugador = new Player(loaderPersonaje->GetModel(), Vector3D(-15, 0.5, -5), Vector3D(0.0, 160.0, 0.0), true);
 	AddGameObject(jugador);

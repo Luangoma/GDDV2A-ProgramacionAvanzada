@@ -11,7 +11,7 @@ private:
     Vector3D position;
 
 public:
-    Enemy(Model modelToSet, Player* playerToSet, Vector3D positionToSet = Vector3D(0.0, 0.0, 0.0), bool vivoToSet = true)
+    Enemy(Model modelToSet, Player* playerToSet, Vector3D positionToSet = Vector3D(0.0, 0.0, 0.0))
         : modelo(modelToSet), player(playerToSet), position(positionToSet)
     {
         SetPosition(positionToSet);
@@ -24,7 +24,7 @@ public:
     void Update(const float& timeIncrement);
 
     void Reset(); // Volver a ponerlo al principio del nivel.
-
+    void TrackPlayer(); // Seguir al jugador objetivo.
     inline Vector3D GetPosition() { return modelo.GetPosition(); }
 };
 

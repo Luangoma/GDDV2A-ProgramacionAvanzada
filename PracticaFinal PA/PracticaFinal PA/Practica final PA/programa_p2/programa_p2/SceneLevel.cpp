@@ -1,6 +1,7 @@
 ﻿#include "SceneLevel.h"
 #include <iostream>
 #include "Enemy.h"
+#include "Obstacle.h"
 
 void SceneLevel::Init()
 {
@@ -36,30 +37,62 @@ void SceneLevel::Init()
 		tren = new Model();
 		if (nivel == 1)
 		{
+			/**
 			*tren = loaderLvl1->GetModel();
 			tren->SetPosition(Vector3D(randomX, 1.7, -incremento * i));
 			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
 			tren->PaintColor(Color(0.1, 0.1, 0.1));
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
+			/**/
+			obstaculo = new Obstacle(
+				loaderLvl1->GetModel(),
+				Vector3D(randomX, 1.7, -incremento * i),
+				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),
+				Color(0.1, 0.1, 0.1),
+				Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
+			//*/
 		}
 		else if (nivel == 2)
 		{
+			/**
 			*tren = loaderLvl2->GetModel();
 			tren->SetPosition(Vector3D(randomX, 1.1, -incremento * i));
 			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
 			tren->PaintColor(Color(0.73, 0.56, 0.1));
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 0.3 : -0.3, 0.0, 0.0));
+			/**/
+			obstaculo = new Obstacle(
+				loaderLvl2->GetModel(),
+				Vector3D(randomX, 1.1, -incremento * i),
+				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),
+				Color(0.73, 0.56, 0.1),
+				Vector3D((i % 2 == 0) ? 0.3 : -0.3, 0.0, 0.0));
+			//*/
 		}
 		else
 		{
+			/**
 			*tren = loaderLvl3->GetModel();
 			tren->SetPosition(Vector3D(randomX, 1, -incremento * i));
 			tren->SetOrientation(Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0));
 			tren->PaintColor(Color(0.4, 0.4, 0.4));
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 1 : -1, 0.0, 0.0));
+			/**/
+			obstaculo = new Obstacle(
+				loaderLvl3->GetModel(),
+				Vector3D(randomX, 1, -incremento * i),
+				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),
+				Color(0.4, 0.4, 0.4),
+				Vector3D((i % 2 == 0) ? 1 : -1, 0.0, 0.0));
+			//*/
 		}
+		/**
 		AddObstaculo(tren);
 		AddGameObject(tren);
+		/**/
+		AddObstaculo(obstaculo);
+		AddGameObject(obstaculo);
+		//*/
 	}
 	// Meta
 	meta = new Cuboid();
@@ -77,7 +110,7 @@ void SceneLevel::Init()
 	AddGameObject(jugador);
 
 	// Enemigo
-	enemigo = new Enemy(loaderPersonaje->GetModel(), jugador, Vector3D(GetBoundary().GetX() / 4, 0.5, GetBoundary().GetX() / 4));
+	enemigo = new Enemy(loaderPersonaje->GetModel(), jugador, Vector3D(GetBoundary().GetX() / 3, 0.5, GetBoundary().GetZ() / 3));
 	AddGameObject(enemigo);
 	//*/
 }
@@ -89,9 +122,9 @@ void SceneLevel::checkBoundary()
 		if (this->gameObjects[idx]->GetPosition().GetX() < -(this->boundary.GetX()) || this->gameObjects[idx]->GetPosition().GetX() > this->boundary.GetX())
 		{
 			this->gameObjects[idx]->SetPosition(
-				Vector3D(-gameObjects[idx]->GetPosition().GetX(),
-						 gameObjects[idx]->GetPosition().GetY(),
-						 gameObjects[idx]->GetPosition().GetZ()));
+				Vector3D(-1 * this->gameObjects[idx]->GetPosition().GetX(),
+						 this->gameObjects[idx]->GetPosition().GetY(),
+						 this->gameObjects[idx]->GetPosition().GetZ()));
 		}
 
 		if (this->gameObjects[idx]->GetPosition().GetY() < -(this->boundary.GetY()) || this->gameObjects[idx]->GetPosition().GetY() > this->boundary.GetY())
@@ -112,6 +145,7 @@ void SceneLevel::checkBoundary()
 	}
 
 	// Cuando llegan los trenes al boundary, se generan nuevas posiciones aleatorias.
+	/**/
 	for (int idx = 0; idx < this->obstaculos.size(); idx++)
 	{
 		float randomX = ((rand() % int(boundary.GetX() / 2) + boundary.GetX() / 4) + int(boundary.GetX() / 2) + 5);
@@ -122,14 +156,17 @@ void SceneLevel::checkBoundary()
 		if (this->obstaculos[idx]->GetPosition().GetX() < -(this->boundary.GetX()) || this->obstaculos[idx]->GetPosition().GetX() > this->boundary.GetX())
 		{
 			std::cout << "Variando: " << randomX << std::endl;
-			this->obstaculos[idx]->SetPosition(Vector3D(randomX, obstaculos[idx]->GetPosition().GetY(), obstaculos[idx]->GetPosition().GetZ()));
+			// this->obstaculos[idx]->SetPosition(Vector3D(randomX,obstaculos[idx]->GetPosition().GetY(),obstaculos[idx]->GetPosition().GetZ()));
+			this->obstaculos[idx]->Repositioning(Vector3D(randomX, obstaculos[idx]->GetPosition().GetY(), obstaculos[idx]->GetPosition().GetZ()));
 		}
 	}
+	//*/
 }
 
 void SceneLevel::checkColisiones()
 {
 
+	/**
 	Vector3D *dimensionesPersonaje = new Vector3D(1.78, 1.13, 3.73);
 	// La x, y & z del personaje estan en su centro, menos la z que est� en el suelo.
 
@@ -137,32 +174,33 @@ void SceneLevel::checkColisiones()
 	// Cuando el personaje rota las dimension se intercambian entre los ejes X y Z.
 	if (jugador->GetOrientation().GetY() == 180.0) // FRENTE / S
 	{
-		dimensionesPersonaje->SetZ(3.73);
-		dimensionesPersonaje->SetX(1.78);
+		dimensionesPersonaje->SetZ(dimensionesPersonaje->GetZ());
+		dimensionesPersonaje->SetX(dimensionesPersonaje->GetX());
 	}
 	else if (jugador->GetOrientation().GetY() == 0.0) // ATRAS / S
 	{
-		dimensionesPersonaje->SetZ(3.73);
-		dimensionesPersonaje->SetX(1.78);
+		dimensionesPersonaje->SetZ(dimensionesPersonaje->GetZ());
+		dimensionesPersonaje->SetX(dimensionesPersonaje->GetX());
 	}
 	else if (jugador->GetOrientation().GetY() == 270.0) // IZQUIERDA / A
 	{
-		dimensionesPersonaje->SetZ(1.78);
-		dimensionesPersonaje->SetX(3.73);
+		dimensionesPersonaje->SetZ(dimensionesPersonaje->GetX());
+		dimensionesPersonaje->SetX(dimensionesPersonaje->GetZ());
 	}
 	else if (jugador->GetOrientation().GetY() == 90.0) // DERECHA / D
 	{
-		dimensionesPersonaje->SetZ(1.78);
-		dimensionesPersonaje->SetX(3.73);
+		dimensionesPersonaje->SetZ(dimensionesPersonaje->GetX());
+		dimensionesPersonaje->SetX(dimensionesPersonaje->GetZ());
 	}
-
+	//*/
+	Vector3D dimensionesPersonaje = jugador->GetDimensions();
 	float minXPersonaje, maxXPersonaje, minYPersonaje, maxYPersonaje, minZPersonaje, maxZPersonaje;
-	minXPersonaje = this->jugador->GetPosition().GetX() - dimensionesPersonaje->GetX() / 2;
-	maxXPersonaje = this->jugador->GetPosition().GetX() + dimensionesPersonaje->GetX() / 2;
+	minXPersonaje = this->jugador->GetPosition().GetX() - dimensionesPersonaje.GetX() / 2;
+	maxXPersonaje = this->jugador->GetPosition().GetX() + dimensionesPersonaje.GetX() / 2;
 	minYPersonaje = this->jugador->GetPosition().GetY();
-	maxYPersonaje = this->jugador->GetPosition().GetY() + dimensionesPersonaje->GetY();
-	minZPersonaje = this->jugador->GetPosition().GetZ() - dimensionesPersonaje->GetZ() / 2;
-	maxZPersonaje = this->jugador->GetPosition().GetZ() + dimensionesPersonaje->GetZ() / 2;
+	maxYPersonaje = this->jugador->GetPosition().GetY() + dimensionesPersonaje.GetY();
+	minZPersonaje = this->jugador->GetPosition().GetZ() - dimensionesPersonaje.GetZ() / 2;
+	maxZPersonaje = this->jugador->GetPosition().GetZ() + dimensionesPersonaje.GetZ() / 2;
 
 	for (int i = 0; i < this->obstaculos.size(); i++)
 	{
@@ -219,23 +257,23 @@ void SceneLevel::checkColisiones()
 	Vector3D *dimensionesEnemy = new Vector3D(1.78, 1.13, 3.73);
 	if (enemigo->GetOrientation().GetY() == 180.0) // FRENTE / S
 	{
-		dimensionesEnemy->SetZ(3.73);
-		dimensionesEnemy->SetX(1.78);
+		dimensionesEnemy->SetZ(dimensionesEnemy->GetZ());
+		dimensionesEnemy->SetX(dimensionesEnemy->GetX());
 	}
 	else if (enemigo->GetOrientation().GetY() == 0.0) // ATRAS / S
 	{
-		dimensionesEnemy->SetZ(3.73);
-		dimensionesEnemy->SetX(1.78);
+		dimensionesEnemy->SetZ(dimensionesEnemy->GetZ());
+		dimensionesEnemy->SetX(dimensionesEnemy->GetX());
 	}
 	else if (enemigo->GetOrientation().GetY() == 270.0) // IZQUIERDA / A
 	{
-		dimensionesEnemy->SetZ(1.78);
-		dimensionesEnemy->SetX(3.73);
+		dimensionesEnemy->SetZ(dimensionesEnemy->GetX());
+		dimensionesEnemy->SetX(dimensionesEnemy->GetZ());
 	}
 	else if (enemigo->GetOrientation().GetY() == 90.0) // DERECHA / D
 	{
-		dimensionesEnemy->SetZ(1.78);
-		dimensionesEnemy->SetX(3.73);
+		dimensionesEnemy->SetZ(dimensionesEnemy->GetX());
+		dimensionesEnemy->SetX(dimensionesEnemy->GetZ());
 	}
 
 	float minXEnemy, maxXEnemy, minYEnemy, maxYEnemy, minZEnemy, maxZEnemy;
@@ -381,4 +419,21 @@ void SceneLevel::Reset()
 	this->activo = true;
 	this->jugador->Reset();
 	this->enemigo->Reset();
+	/**
+	for (Obstacle *obstacul0 : obstaculos)
+	{
+		obstacul0->Reset();
+	}
+	for (int idx = 0; idx < this->obstaculos.size(); idx++)
+	{
+		float randomX = (rand() % int(GetBoundary().GetX()));
+		if (idx % 2 == 0) { randomX = -randomX; }
+		if (this->obstaculos[idx]->GetPosition().GetX() < -(this->boundary.GetX()) || this->obstaculos[idx]->GetPosition().GetX() > this->boundary.GetX())
+		{
+			std::cout << "Reseteando / Variando: " << randomX << std::endl;
+			// this->obstaculos[idx]->SetPosition(Vector3D(randomX,obstaculos[idx]->GetPosition().GetY(),obstaculos[idx]->GetPosition().GetZ()));
+			this->obstaculos[idx]->Repositioning(Vector3D(randomX, obstaculos[idx]->GetPosition().GetY(), obstaculos[idx]->GetPosition().GetZ()));
+		}
+	}
+	//*/
 }

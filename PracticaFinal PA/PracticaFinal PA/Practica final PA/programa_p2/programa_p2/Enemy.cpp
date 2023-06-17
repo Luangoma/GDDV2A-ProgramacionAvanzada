@@ -7,38 +7,51 @@ void Enemy::Render()
 
 void Enemy::Update(const float &timeIncrement)
 {
+	TrackPlayer();
+	modelo.Update(timeIncrement);
+}
+
+void Enemy::Reset()
+{
+	modelo.SetPosition(position);
+}
+void Enemy::TrackPlayer()
+{
+
 	// La x, y & z del personaje estan en su centro, menos la z que esta en el suelo.
 	// COMPROBAR ROTACION DEL PERSONAJE PARA EL CALCULO DEL SEGUIMIENTO.
 	// Cuando el personaje rota las dimension se intercambian entre los ejes X y Z.
-	Vector3D *dimensionesPlayer = new Vector3D(1.78, 1.13, 3.73);
+	
+	Vector3D dimensionesPlayer = player->GetDimensions();
+	/**
 	if (player->GetOrientation().GetY() == 180.0) // FRENTE / S
 	{
-		dimensionesPlayer->SetZ(3.73);
-		dimensionesPlayer->SetX(1.78);
+		dimensionesPlayer->SetZ(dimensionesPlayer->GetZ());
+		dimensionesPlayer->SetX(dimensionesPlayer->GetX());
 	}
 	else if (player->GetOrientation().GetY() == 0.0) // ATRAS / S
 	{
-		dimensionesPlayer->SetZ(3.73);
-		dimensionesPlayer->SetX(1.78);
+		dimensionesPlayer->SetZ(dimensionesPlayer->GetZ());
+		dimensionesPlayer->SetX(dimensionesPlayer->GetX());
 	}
 	else if (player->GetOrientation().GetY() == 270.0) // IZQUIERDA / A
 	{
-		dimensionesPlayer->SetZ(1.78);
-		dimensionesPlayer->SetX(3.73);
+		dimensionesPlayer->SetZ(dimensionesPlayer->GetX());
+		dimensionesPlayer->SetX(dimensionesPlayer->GetZ());
 	}
 	else if (player->GetOrientation().GetY() == 90.0) // DERECHA / D
 	{
-		dimensionesPlayer->SetZ(1.78);
-		dimensionesPlayer->SetX(3.73);
+		dimensionesPlayer->SetZ(dimensionesPlayer->GetX());
+		dimensionesPlayer->SetX(dimensionesPlayer->GetZ());
 	}
-
+	//*/
 	float minXPlayer, maxXPlayer, minYPlayer, maxYPlayer, minZPlayer, maxZPlayer;
-	minXPlayer = this->player->GetPosition().GetX() - dimensionesPlayer->GetX() / 2;
-	maxXPlayer = this->player->GetPosition().GetX() + dimensionesPlayer->GetX() / 2;
+	minXPlayer = this->player->GetPosition().GetX() - dimensionesPlayer.GetX() / 2;
+	maxXPlayer = this->player->GetPosition().GetX() + dimensionesPlayer.GetX() / 2;
 	minYPlayer = this->player->GetPosition().GetY();
-	maxYPlayer = this->player->GetPosition().GetY() + dimensionesPlayer->GetY();
-	minZPlayer = this->player->GetPosition().GetZ() - dimensionesPlayer->GetZ() / 2;
-	maxZPlayer = this->player->GetPosition().GetZ() + dimensionesPlayer->GetZ() / 2;
+	maxYPlayer = this->player->GetPosition().GetY() + dimensionesPlayer.GetY();
+	minZPlayer = this->player->GetPosition().GetZ() - dimensionesPlayer.GetZ() / 2;
+	maxZPlayer = this->player->GetPosition().GetZ() + dimensionesPlayer.GetZ() / 2;
 
 	/**
 	// COMPROBAR ROTACION DEL PERSONAJE PARA EL CALCULO DEL SEGUIMIENTO.
@@ -176,10 +189,4 @@ void Enemy::Update(const float &timeIncrement)
 		modelo.SetOrientation(Vector3D(0.0, 90.0, 0.0));
 	}
 	//*/
-	modelo.Update(timeIncrement);
-}
-
-void Enemy::Reset()
-{
-	modelo.SetPosition(position);
 }

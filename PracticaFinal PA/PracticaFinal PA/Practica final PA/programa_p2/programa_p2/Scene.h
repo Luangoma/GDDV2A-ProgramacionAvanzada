@@ -7,6 +7,7 @@
 #include "Text.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Obstacle.h"
 
 using namespace std;
 
@@ -21,12 +22,13 @@ protected:
 	Vector3D boundary;
 
 	float desplazamiento, incremento;
-	vector<Solid *> obstaculos, vias; // Trenes y vias
-
+	vector<Solid *> vias; // Trenes y vias
+	vector<Obstacle*> obstaculos;
 	ModelLoader *loader, *loaderVias, *loaderLvl1, *loaderLvl2, *loaderLvl3, *loaderPersonaje;
 	Model *via, *tren;
+	Obstacle *obstaculo;
 	Player *jugador;
-	Enemy* enemigo;
+	Enemy *enemigo;
 
 public:
 	Scene(Vector3D boundaryArgument = Vector3D(10, 8, 10), bool drawVertexesArgument = false, bool drawBoxArgument = true) : 
@@ -49,7 +51,7 @@ public:
 	// OTROS METODOS
 	inline void AddGameObject(Solid *gameObject) { this->gameObjects.push_back(gameObject); }
 	inline void AddVia(Solid *via) { this->vias.push_back(via); }
-	inline void AddObstaculo(Solid *tren) { this->obstaculos.push_back(tren); }
+	inline void AddObstaculo(Obstacle *obstaculo) { this->obstaculos.push_back(obstaculo); }
 	inline void AddPersonaje(Player *personaje) { this->jugador = personaje; }
 
 	void Init();
