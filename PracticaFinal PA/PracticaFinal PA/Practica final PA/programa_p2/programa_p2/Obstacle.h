@@ -1,42 +1,57 @@
 #pragma once
+#include "Vehicle.h"
 #include "Model.h"
-#include "Solid.h"
-class Obstacle : public Solid
+
+class Obstacle : public Vehicle
 {
+    /**
 private:
     Model modelo;
-    float speed /** , incremento, i;
-     float* randomX//*/
-        ;
-
+    float speed;
+    //*/
 public:
-    Obstacle(Model modelToSet, /* float* randomToSet, float incrementoToSet = 0.0, float iToSet = 0.0,*/
+    Obstacle(Model modelToSet,
              Vector3D positionToSet = Vector3D(0.0, 0.0, 0.0),
              Vector3D orientationToSet = Vector3D(0.0, 0.0, 0.0),
+             Vector3D dimensions = Vector3D(0.0, 0.0, 0.0),
              Color colorToSet = Color(0.0, 0.0, 0.0),
-             Vector3D speedToSet = Vector3D(0.0, 0.0, 0.0))
-        : modelo(modelToSet)
-    //, randomX(randomToSet), incremento(incrementoToSet), i(iToSet)
+             float speedToSet = 0.0)
+        : Vehicle(
+            modelToSet,
+            positionToSet,
+            orientationToSet,
+            dimensions,
+            colorToSet,
+            speedToSet)
+        //, modelo(modelToSet), speed(speedToSet)
     {
+        /**
+        if (nivelToSet==1)
+        {
+
+        }
+        else if (nivelToSet == 2)
+        {
+
+        }
+        else {
+
+        }
+        //*/
+
+        /**
         SetPosition(positionToSet);
-        modelo.SetPosition(positionToSet);
-        modelo.SetOrientation(orientationToSet);
-        modelo.PaintColor(colorToSet);
-        modelo.SetSpeed(speedToSet);
+        model.SetPosition(positionToSet);
+        model.SetOrientation(orientationToSet);
+        model.PaintColor(colorToSet);
+        model.SetSpeed(Vector3D(speedToSet, 0.0, 0.0));
+        //*/
     }
 
-    // Metodos virtuales de Solid
-    void Render();
-    void Update(const float &timeIncrement);
-
-    // void Reset(); // Volver a ponerlo al principio del nivel.
+    void Reset(); // Volver a ponerlo al principio del nivel.
     /**
     inline Vector3D GetPosition() { return modelo.GetPosition(); }
     inline Vector3D GetOrientation() { return modelo.GetOrientation(); }
     //*/
-    inline void Repositioning(const Vector3D &repositionToSet) { this->modelo.SetPosition(repositionToSet); }
-
-    void ActivarRalenti();
-    void ActivarAccelere();
-    void ActivarNormal();
+    inline void Repositioning(const Vector3D &repositionToSet) { this->SetPosition(repositionToSet); }
 };

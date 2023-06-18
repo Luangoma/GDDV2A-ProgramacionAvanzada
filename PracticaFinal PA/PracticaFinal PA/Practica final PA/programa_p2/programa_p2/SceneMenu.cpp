@@ -55,33 +55,38 @@ void SceneMenu::Init()
 	tren = new Model();
 	//*/
 	obstaculo = new Obstacle(
-	loaderLvl1->GetModel(),
-		Vector3D(15.0, 1.7, 0.0),
-		Vector3D(0.0, 0.0, 0.0),
-		Color(0.1, 0.1, 0.1),
-		Vector3D(0.0, 0.0, 0.0));	
+		loaderLvl1->GetModel(),		// Modelo
+		Vector3D(15.0, 1.7, 0.0),	// Posicion
+		Vector3D(0.0, 0.0, 0.0),	// Rotacion
+		Vector3D(37.1, 3.58, 2.87), // Dimensiones
+		Color(0.1, 0.1, 0.1),		// Color
+		0.0);						// Velocidad
 	AddObstaculo(obstaculo);
 	AddGameObject(obstaculo);
 	obstaculo = new Obstacle(
-	loaderLvl2->GetModel(),
-		Vector3D(25.0, 1.1, 5.0),
-		Vector3D(0.0, 0.0, 0.0),
-		Color(0.73, 0.56, 0.1),
-		Vector3D(0.0, 0.0, 0.0));	
+		loaderLvl2->GetModel(),		// Modelo
+		Vector3D(25.0, 1.1, 5.0),	// Posicion
+		Vector3D(0.0, 0.0, 0.0),	// Rotacion
+		Vector3D(66.7, 2.72, 2.25), // Dimensiones
+		Color(0.73, 0.56, 0.1),		// Color
+		0.0);						// Velocidad
 	AddObstaculo(obstaculo);
 	AddGameObject(obstaculo);
 	obstaculo = new Obstacle(
-	loaderLvl3->GetModel(),
-		Vector3D(30, 1.0, 10.0),
-		Vector3D(0.0, 0.0, 0.0),
-		Color(0.4, 0.4, 0.4),
-		Vector3D(0.0, 0.0, 0.0));	
+		loaderLvl3->GetModel(),		// Modelo
+		Vector3D(30, 1.0, 10.0),	// Posicion
+		Vector3D(0.0, 0.0, 0.0),	// Rotacion
+		Vector3D(90.5, 1.9, 2.03),  // Dimensiones
+		Color(0.4, 0.4, 0.4),		// Color
+		0.0);						// Velocidad
 	AddObstaculo(obstaculo);
 	AddGameObject(obstaculo);
 		//*/
 	
 	// Personaje
-	jugador = new Player(loaderPersonaje->GetModel(), Vector3D(-15, 0.5, -5), Vector3D(0.0, 160.0, 0.0), true);
+	jugador = new Player(loaderPersonaje->GetModel(), 
+		Vector3D(-15, 0.5, -5), 
+		Vector3D(0.0, 160.0, 0.0));
 	AddGameObject(jugador);
 	//*/
 	// TEXTO

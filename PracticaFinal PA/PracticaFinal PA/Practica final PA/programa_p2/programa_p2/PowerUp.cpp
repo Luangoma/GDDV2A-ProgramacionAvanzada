@@ -1,6 +1,6 @@
-#include "PowerUP.h"
+#include "PowerUp.h"
 #include <chrono>
-
+/**
 void PowerUP::Init()
 {
 	//Cargar modelo del personaje.
@@ -10,20 +10,28 @@ void PowerUP::Init()
 	//Propiedades iniciales del personaje.
 	modelo.SetPosition(Vector3D(0, 0.5, 5));
 	modelo.SetOrientationSpeed(Vector3D(0, 1, 0));
-	modelo.SetColor(Color(0.8, 0.3, 0.2));
+	modelo.PaintColor(Color(0.8, 0.3, 0.2));
+}
+//*/
+void PowerUp::Render()
+{
+	if (GetStatus())
+	{
+		model.Render();
+	}
 }
 
-void PowerUP::Render()
+void PowerUp::Update(const float &timeIncrement)
 {
-	modelo.Render();
+	model.Update(timeIncrement);
 }
 
-void PowerUP::Update(const float& timeIncrement)
+void PowerUp::Reset()
 {
-	modelo.Update(timeIncrement);
+	//model.SetPosition(Vector3D(initialPosition));
+	this->SetStatus(true);
 }
 
-void PowerUP::Reset()
+void PowerUp::ApplyEffect()
 {
-	modelo.SetPosition(Vector3D(0, 0.5, 5));
 }

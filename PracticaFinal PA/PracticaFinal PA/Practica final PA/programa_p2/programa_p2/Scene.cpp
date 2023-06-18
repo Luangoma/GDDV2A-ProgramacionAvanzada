@@ -72,8 +72,11 @@ void Scene::Init()
 	loaderPersonaje = new ModelLoader();
 	loaderPersonaje->LoadModel("..\\..\\3dModels\\Cop.obj");
 
+	// Carga del modelo 'Bolt' (PowerUP)
+	loaderPower = new ModelLoader();
+	loaderPower->LoadModel("..\\..\\3dModels\\Bolt.obj");
 	// Inicializacion de tren
-	tren = new Model();
+	// tren = new Model();
 	// Inicializacion de personaje
 	//jugador = new Player();
 	//jugador->Init();

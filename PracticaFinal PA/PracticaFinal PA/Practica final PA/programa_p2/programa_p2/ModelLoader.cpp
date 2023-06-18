@@ -115,9 +115,3 @@ void ModelLoader::Clear()
 	this->minY = 0;
 	this->minZ = 0;
 }
-
-
-
-
-
-

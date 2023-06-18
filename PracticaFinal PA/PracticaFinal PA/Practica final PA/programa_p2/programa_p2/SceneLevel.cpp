@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Enemy.h"
 #include "Obstacle.h"
+#include "Ralenti.h"
 
 void SceneLevel::Init()
 {
@@ -34,7 +35,7 @@ void SceneLevel::Init()
 		// Posicion Inicial Aleatoria
 		float randomX = (rand() % int(GetBoundary().GetX()));
 
-		tren = new Model();
+		//tren = new Model();
 		if (nivel == 1)
 		{
 			/**
@@ -45,12 +46,15 @@ void SceneLevel::Init()
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
 			/**/
 			obstaculo = new Obstacle(
-				loaderLvl1->GetModel(),
-				Vector3D(randomX, 1.7, -incremento * i),
-				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),
-				Color(0.1, 0.1, 0.1),
-				Vector3D((i % 2 == 0) ? 0.1 : -0.1, 0.0, 0.0));
+				loaderLvl1->GetModel(),							// Modelo
+				Vector3D(randomX, 1.7, -incremento * i),		// Posicion
+				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),	// Rotacion
+				Vector3D(37.1, 3.58, 2.87),						// Dimensiones
+				Color(0.1, 0.1, 0.1),							// Color
+				(i % 2 == 0) ? 0.1 : -0.1);						// Velocidad
 			//*/
+
+
 		}
 		else if (nivel == 2)
 		{
@@ -62,11 +66,12 @@ void SceneLevel::Init()
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 0.3 : -0.3, 0.0, 0.0));
 			/**/
 			obstaculo = new Obstacle(
-				loaderLvl2->GetModel(),
-				Vector3D(randomX, 1.1, -incremento * i),
-				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),
-				Color(0.73, 0.56, 0.1),
-				Vector3D((i % 2 == 0) ? 0.3 : -0.3, 0.0, 0.0));
+				loaderLvl2->GetModel(),							// Modelo
+				Vector3D(randomX, 1.1, -incremento * i),		// Posicion
+				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),// Rotacion
+				Vector3D(66.7, 2.72, 2.25),						// Dimensiones
+				Color(0.73, 0.56, 0.1),							// Color
+				(i % 2 == 0) ? 0.3 : -0.3);						// Velocidad
 			//*/
 		}
 		else
@@ -79,11 +84,12 @@ void SceneLevel::Init()
 			tren->SetSpeed(Vector3D((i % 2 == 0) ? 1 : -1, 0.0, 0.0));
 			/**/
 			obstaculo = new Obstacle(
-				loaderLvl3->GetModel(),
-				Vector3D(randomX, 1, -incremento * i),
-				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),
-				Color(0.4, 0.4, 0.4),
-				Vector3D((i % 2 == 0) ? 1 : -1, 0.0, 0.0));
+				loaderLvl3->GetModel(),							// Modelo
+				Vector3D(randomX, 1.0, -incremento * i),		// Posicion
+				Vector3D(0.0, (i % 2 == 0) ? 180.0 : 0.0, 0.0),	// Rotacion
+				Vector3D(90.5, 1.9, 2.03),						// Dimensiones
+				Color(0.4, 0.4, 0.4),							// Color
+				(i % 2 == 0) ? 1 : -1);							// Velocidad
 			//*/
 		}
 		/**
@@ -106,16 +112,29 @@ void SceneLevel::Init()
 	SetMeta(meta);
 
 	// Personaje
-	jugador = new Player(loaderPersonaje->GetModel(), Vector3D(0.0, 0.5, 5.0));
+	jugador = new Player(loaderPersonaje->GetModel(), 
+		Vector3D(0.0, 0.5, 5.0));
 	AddGameObject(jugador);
 
 	// Enemigo
-	enemigo = new Enemy(loaderPersonaje->GetModel(), jugador, Vector3D(GetBoundary().GetX() / 3, 0.5, GetBoundary().GetZ() / 3));
+	enemigo = new Enemy(loaderPersonaje->GetModel(), 
+		jugador, 
+		Vector3D(GetBoundary().GetX() / 3, 0.5, GetBoundary().GetZ() / 3));
 	AddGameObject(enemigo);
+	//*/
+
+	//PowerUPs
+	fastUp = new Accelere(loaderPower->GetModel(), jugador);
+	AddPowerUp(fastUp);
+	AddGameObject(fastUp);
+	/**
+	slowUp = new Accelere(loaderPower->GetModel(), obstaculos);
+	AddPowerUp(slowUp);
+	AddGameObject(slowUp);
 	//*/
 }
 
-void SceneLevel::checkBoundary()
+void SceneLevel::CheckBoundary()
 {
 	for (int idx = 0; idx < this->gameObjects.size(); idx++)
 	{
@@ -153,7 +172,8 @@ void SceneLevel::checkBoundary()
 		{
 			randomX = -randomX;
 		}
-		if (this->obstaculos[idx]->GetPosition().GetX() < -(this->boundary.GetX()) || this->obstaculos[idx]->GetPosition().GetX() > this->boundary.GetX())
+		if (this->obstaculos[idx]->GetPosition().GetX() < -(this->boundary.GetX()) ||
+			this->obstaculos[idx]->GetPosition().GetX() > this->boundary.GetX())
 		{
 			std::cout << "Variando: " << randomX << std::endl;
 			// this->obstaculos[idx]->SetPosition(Vector3D(randomX,obstaculos[idx]->GetPosition().GetY(),obstaculos[idx]->GetPosition().GetZ()));
@@ -163,7 +183,7 @@ void SceneLevel::checkBoundary()
 	//*/
 }
 
-void SceneLevel::checkColisiones()
+void SceneLevel::CheckColisiones()
 {
 
 	/**
@@ -193,6 +213,9 @@ void SceneLevel::checkColisiones()
 		dimensionesPersonaje->SetX(dimensionesPersonaje->GetZ());
 	}
 	//*/
+
+	// // // Colisiones con los obstaculos
+
 	Vector3D dimensionesPersonaje = jugador->GetDimensions();
 	float minXPersonaje, maxXPersonaje, minYPersonaje, maxYPersonaje, minZPersonaje, maxZPersonaje;
 	minXPersonaje = this->jugador->GetPosition().GetX() - dimensionesPersonaje.GetX() / 2;
@@ -206,8 +229,8 @@ void SceneLevel::checkColisiones()
 	{
 		// Dimensiones del personaje.
 
-		Vector3D *dimensionesTren;
-
+		Vector3D dimensionesTren = this->obstaculos[i]->GetDimensions();
+		/**
 		// CAMBIAR LAS DIMENSIONES DEL TREN DEPENDIENDO DEL NIVEL.
 		// Cada nivel tiene un tren con dimensiones diferentes.
 		if (nivel == 1)
@@ -220,40 +243,37 @@ void SceneLevel::checkColisiones()
 		}
 		else
 		{
-			// dimensionesTren = new Vector3D(90.5, 1.9, 2.03);
 			dimensionesTren = new Vector3D(90.5, 1.9, 2.03);
 		}
+		//*/
 
+		// DETECTAR COLISIONES CON LOS OBSTACULOS
 		float minXTren, maxXTren, minYTren, maxYTren, minZTren, maxZTren;
-		minXTren = this->obstaculos[i]->GetPosition().GetX() - dimensionesTren->GetX() / 2;
-		maxXTren = this->obstaculos[i]->GetPosition().GetX() + dimensionesTren->GetX() / 2;
+		minXTren = this->obstaculos[i]->GetPosition().GetX() - dimensionesTren.GetX() / 2;
+		maxXTren = this->obstaculos[i]->GetPosition().GetX() + dimensionesTren.GetX() / 2;
 		minYTren = this->obstaculos[i]->GetPosition().GetY();
-		maxYTren = this->obstaculos[i]->GetPosition().GetY() + dimensionesTren->GetY();
-		minZTren = this->obstaculos[i]->GetPosition().GetZ() - dimensionesTren->GetZ() / 2;
-		maxZTren = this->obstaculos[i]->GetPosition().GetZ() + dimensionesTren->GetZ() / 2;
+		maxYTren = this->obstaculos[i]->GetPosition().GetY() + dimensionesTren.GetY();
+		minZTren = this->obstaculos[i]->GetPosition().GetZ() - dimensionesTren.GetZ() / 2;
+		maxZTren = this->obstaculos[i]->GetPosition().GetZ() + dimensionesTren.GetZ() / 2;
 
-		// DETECTAR COLISIONES
 		bool colisiono = false;
-		if ((minXPersonaje <= maxXTren && minXPersonaje >= minXTren) || (maxXPersonaje <= maxXTren && maxXPersonaje >= minXTren))
+		if (((minXPersonaje <= maxXTren && minXPersonaje >= minXTren) ||
+			(maxXPersonaje <= maxXTren && maxXPersonaje >= minXTren)) &&
+			((minZPersonaje <= maxZTren && minZPersonaje >= minZTren) ||
+			(maxZPersonaje <= maxZTren && maxZPersonaje >= minZTren)))
 		{
-			// Colisión en eI eje X
-			colisiono = true;
-			if ((minZPersonaje <= maxZTren && minZPersonaje >= minZTren) || (maxZPersonaje <= maxZTren && maxZPersonaje >= minZTren))
-			{
-				// Colisión en eI eje Z
-				colisiono = true;
-				if (colisiono)
-				{
-					// Ha colisionado
-					std::cout << "Ha colisionado." << std::endl;
-					haPerdido();
-					this->activo = false;
-				}
-			}
+			jugador->SetStatus(false);
+			this->activo = false;
+			std::cout << "Ha colisionado." << std::endl;
 		}
 	}
+	
+
+	// // // Colisiones con el enemigo
+
 	// COMPROBAR ROTACION DEL PERSONAJE PARA EL CALCULO DEL SEGUIMIENTO.
 	// Cuando el personaje rota las dimension se intercambian entre los ejes X y Z.
+	/**
 	Vector3D *dimensionesEnemy = new Vector3D(1.78, 1.13, 3.73);
 	if (enemigo->GetOrientation().GetY() == 180.0) // FRENTE / S
 	{
@@ -275,47 +295,56 @@ void SceneLevel::checkColisiones()
 		dimensionesEnemy->SetZ(dimensionesEnemy->GetX());
 		dimensionesEnemy->SetX(dimensionesEnemy->GetZ());
 	}
+	//*/
 
+	// DETECTAR COLISIONES CON EL ENEMIGO
+	Vector3D dimensionesEnemy = enemigo->GetDimensions();
 	float minXEnemy, maxXEnemy, minYEnemy, maxYEnemy, minZEnemy, maxZEnemy;
-	minXEnemy = this->enemigo->GetPosition().GetX() - dimensionesEnemy->GetX() / 2;
-	maxXEnemy = this->enemigo->GetPosition().GetX() + dimensionesEnemy->GetX() / 2;
+	minXEnemy = this->enemigo->GetPosition().GetX() - dimensionesEnemy.GetX() / 2;
+	maxXEnemy = this->enemigo->GetPosition().GetX() + dimensionesEnemy.GetX() / 2;
 	minYEnemy = this->enemigo->GetPosition().GetY();
-	maxYEnemy = this->enemigo->GetPosition().GetY() + dimensionesEnemy->GetY();
-	minZEnemy = this->enemigo->GetPosition().GetZ() - dimensionesEnemy->GetZ() / 2;
-	maxZEnemy = this->enemigo->GetPosition().GetZ() + dimensionesEnemy->GetZ() / 2;
+	maxYEnemy = this->enemigo->GetPosition().GetY() + dimensionesEnemy.GetY();
+	minZEnemy = this->enemigo->GetPosition().GetZ() - dimensionesEnemy.GetZ() / 2;
+	maxZEnemy = this->enemigo->GetPosition().GetZ() + dimensionesEnemy.GetZ() / 2;
 
-	bool colisiono = false;
-	if ((minXPersonaje <= maxXEnemy && minXPersonaje >= minXEnemy) || (maxXPersonaje <= maxXEnemy && maxXPersonaje >= minXEnemy))
-	{
-		// Colisión en eI eje X
-		colisiono = true;
-		if ((minZPersonaje <= maxZEnemy && minZPersonaje >= minZEnemy) || (maxZPersonaje <= maxZEnemy && maxZPersonaje >= minZEnemy))
+	if (((minXPersonaje <= maxXEnemy && minXPersonaje >= minXEnemy) || 
+		(maxXPersonaje <= maxXEnemy && maxXPersonaje >= minXEnemy)) &&
+		((minZPersonaje <= maxZEnemy && minZPersonaje >= minZEnemy) || 
+		(maxZPersonaje <= maxZEnemy && maxZPersonaje >= minZEnemy)))
 		{
-			// Colisión en eI eje Z
-			colisiono = true;
-			if (colisiono)
-			{
-				// Ha colisionado
-				std::cout << "Ha colisionado." << std::endl;
-				haPerdido();
-				this->activo = false;
-			}
+			jugador->SetStatus(false);
+			this->activo = false;
+			this->jugador->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+			std::cout << "Ha colisionado." << std::endl;
+		}
+	
+
+	for (int i = 0; i < this->powerups.size(); i++)
+	{
+		if (minXPersonaje <= this->powerups[i]->GetPosition().GetX() && 
+			maxXPersonaje >= this->powerups[i]->GetPosition().GetX() &&
+			minZPersonaje <= this->powerups[i]->GetPosition().GetZ() && 
+			maxZPersonaje >= this->powerups[i]->GetPosition().GetZ())
+		{
+		powerups[i]->ApplyEffect();
 		}
 	}
+
 	float zMeta = this->meta->GetPosition().GetZ();
 	if ((zMeta >= minZPersonaje) || (zMeta >= maxZPersonaje))
 	{
 		this->activo = false;
-		haGanado();
+		this->jugador->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+		estadoPartida = true;
 	}
 }
 
+	/**
 void SceneLevel::haPerdido()
 {
 	this->jugador->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	estadoPerder = true;
 
-	/**
 	Text* textoPerdido = new Text();
 	Text* textoReiniciar = new Text();
 	textoPerdido->SetText("HAS PERDIDO");
@@ -339,13 +368,13 @@ void SceneLevel::haPerdido()
 	textoReiniciar->SetColor(Color(255, 0, 0));
 	this->AddGameObject(textoPerdido);
 	this->AddGameObject(textoReiniciar);
-	//*/
 }
+	//*/
 
 void SceneLevel::haGanado()
 {
 	this->jugador->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	estadoGanar = true;
+	estadoPartida = true;
 	/**
 	Text* textoGanado = new Text();
 	textoGanado->SetText("HAS GANADO");
@@ -369,8 +398,8 @@ void SceneLevel::haGanado()
 void SceneLevel::Update(const float &timeIncrement)
 {
 	Scene::Update(timeIncrement);
-	this->checkBoundary();
-	this->checkColisiones();
+	this->CheckBoundary();
+	this->CheckColisiones();
 }
 
 void SceneLevel::ProcessKeyPressed(unsigned char key, int px, int py)
@@ -398,6 +427,23 @@ int SceneLevel::CheckStatus()
 {
 	// Devuelve un 0 si no pasa nada, un 1 si ha ganado y un 2 si ha perdido,
 	// para poder cambiar a las escenas de Game Over en Game.cpp.
+	/**/
+	if (jugador->GetStatus())
+	{
+		if (estadoPartida)
+		{
+		return 1;
+		}
+		else
+		{
+		return 0;
+		}
+	}
+	else
+	{
+		return 2;
+	}
+	/**
 	if (estadoGanar)
 	{
 		return 1;
@@ -410,20 +456,24 @@ int SceneLevel::CheckStatus()
 	{
 		return 0;
 	}
+	//*/
 }
 
 void SceneLevel::Reset()
 {
-	this->estadoGanar = false;
-	this->estadoPerder = false;
+	this->estadoPartida = false;
 	this->activo = true;
 	this->jugador->Reset();
 	this->enemigo->Reset();
-	/**
-	for (Obstacle *obstacul0 : obstaculos)
+	for (Obstacle* obstaculo : obstaculos)
 	{
-		obstacul0->Reset();
+		obstaculo->Reset();
+	}	
+	for (PowerUp* power : powerups)
+	{
+		power->Reset();
 	}
+	/**
 	for (int idx = 0; idx < this->obstaculos.size(); idx++)
 	{
 		float randomX = (rand() % int(GetBoundary().GetX()));

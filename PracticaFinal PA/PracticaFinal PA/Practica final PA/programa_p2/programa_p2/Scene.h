@@ -24,12 +24,16 @@ protected:
 	float desplazamiento, incremento;
 	vector<Solid *> vias; // Trenes y vias
 	vector<Obstacle*> obstaculos;
-	ModelLoader *loader, *loaderVias, *loaderLvl1, *loaderLvl2, *loaderLvl3, *loaderPersonaje;
-	Model *via, *tren;
+	ModelLoader *loader, *loaderVias, *loaderLvl1, *loaderLvl2, *loaderLvl3, *loaderPersonaje, *loaderPower;
+	Model *via;
 	Obstacle *obstaculo;
 	Player *jugador;
 	Enemy *enemigo;
-
+	/**
+	dimensionesTren1 = new Vector3D(37.1, 3.58, 2.87);
+	dimensionesTren2 = new Vector3D(66.7, 2.72, 2.25);
+	dimensionesTren3 = new Vector3D(90.5, 1.9, 2.03);
+	//*/
 public:
 	Scene(Vector3D boundaryArgument = Vector3D(10, 8, 10), bool drawVertexesArgument = false, bool drawBoxArgument = true) : 
 		boundary(boundaryArgument), drawVertexes(drawVertexesArgument), drawBox(drawBoxArgument){};

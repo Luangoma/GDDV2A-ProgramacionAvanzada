@@ -1,25 +1,22 @@
 #pragma once
-#include "Model.h"
-#include "ModelLoader.h"
+#include "PowerUp.h"
 
-class Coin
+class Coin : public PowerUp
 {
-private:
-    ModelLoader* cargador;
-    Model modelo;
-
 public:
-    Coin() {}
+	Coin(Vector3D positionToSet = Vector3D(0.0, 0.0, 0.0))
+	{
+		cargador = new ModelLoader();
+		cargador->LoadModel("..\\..\\3dModels\\Coin.obj");
+		model = cargador->GetModel();
 
-    //Siempre se debe ejecutar al crear el personaje.
-    void Init();
+		//Propiedades iniciales del personaje.
+		SetPosition(positionToSet);
+		model.SetPosition(Vector3D(positionToSet));
+		model.SetOrientationSpeed(Vector3D(0, 1, 0));
+		model.PaintColor(Color(0.8, 0.3, 0.2));
+	}
 
-    // Metodos virtuales de Solid
-    void Render();
-    void Update(const float& timeIncrement);
-
-    void Reset(); // Volver a ponerlo al principio del nivel.
-    inline void SetModel(const Model& modelToSet) { modelo = modelToSet; }
+	void ApplyEffect();
 };
-
 

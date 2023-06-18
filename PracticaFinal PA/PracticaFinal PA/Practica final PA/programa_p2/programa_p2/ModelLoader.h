@@ -34,4 +34,3 @@ public:
 	inline Model GetModel() { return this->model; }
 
 };
-
