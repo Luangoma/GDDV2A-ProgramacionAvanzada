@@ -4,11 +4,6 @@
 
 class Obstacle : public Vehicle
 {
-	/**
-private:
-	Model modelo;
-	float speed;
-	//*/
 public:
 	Obstacle(Model modelToSet,
 			 Vector3D positionToSet = Vector3D(0.0, 0.0, 0.0),

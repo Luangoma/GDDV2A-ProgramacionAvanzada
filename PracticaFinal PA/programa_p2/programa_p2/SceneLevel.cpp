@@ -109,7 +109,7 @@ void SceneLevel::Init()
 	randomX = (rand() % int(GetBoundary().GetX()));
 	enemigo = new Enemy(loaderPersonaje->GetModel(),
 						jugador,
-						Vector3D(randomX, 0.5, GetBoundary().GetZ() / 2));
+						Vector3D(randomX, 0.5, GetBoundary().GetZ() / 4));
 	AddGameObject(enemigo);
 
 	// PowerUPs
