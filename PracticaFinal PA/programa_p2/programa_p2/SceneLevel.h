@@ -1,9 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include <vector>
-#include "Camera.h"
 #include "ModelLoader.h"
-#include "Model.h"
 #include "Cuboid.h"
 #include "PowerUp.h"
 #include "Ralenti.h"
@@ -12,20 +10,18 @@
 class SceneLevel : public Scene
 {
 private:
-    int nivel;
+    int nivel, maxLevel;
     Cuboid *meta;
     bool activo, estadoPartida;
-    Accelere* fastUp;
-    Ralenti* slowUp;
-    vector<PowerUp*> powerups;
+    ModelLoader *loaderPower;
+    Accelere *fastUp;
+    Ralenti *slowUp;
+    vector<PowerUp *> powerups;
     void CheckBoundary();
 
 public:
-    SceneLevel(int nivelToSet = 1,bool activoArgument = true) : 
-    Scene(), activo(activoArgument), nivel(nivelToSet), estadoPartida(false)
-    {
-        std::cout << "Constructor del nivel " << nivel << std::endl;
-    }
+    SceneLevel(int nivelToSet = 1, int maxLevelToSet = 3, bool activoArgument = true) : 
+    Scene(), nivel(nivelToSet), maxLevel(maxLevelToSet), activo(activoArgument), estadoPartida(false) {}
 
     void Init();
 
@@ -39,9 +35,7 @@ public:
     void CheckColisiones();
     void ProcessKeyPressed(unsigned char key, int px, int py);
 
-    inline void AddPowerUp(PowerUp* powerup) { this->powerups.push_back(powerup); };
-    void haPerdido();
-    void haGanado();
+    inline void AddPowerUp(PowerUp *powerup) { this->powerups.push_back(powerup); AddGameObject(powerup); };
 
     void Reset();
 };

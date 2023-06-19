@@ -48,36 +48,18 @@ void Scene::Init()
 	}
 
 	// Carga de recursos base
+
 	// Carga del modelo 'viastren' (generico para los niveles)
 	loaderVias = new ModelLoader();
-	loaderVias->LoadModel("..\\..\\3dModels\\viasTren.obj");
-	std::cout << "Carga de las vias" << std::endl;
-
-	// Carga del modelo 'TrenLvl1' (tren del nivel 1)
-	loaderLvl1 = new ModelLoader();
-	loaderLvl1->LoadModel("..\\..\\3dModels\\TrenLvl1.obj");
-	std::cout << "Carga del tren de nivel 1" << std::endl;
-
-	// Carga del modelo 'TrenLvl2' (tren del nivel 2)
-	loaderLvl2 = new ModelLoader();
-	loaderLvl2->LoadModel("..\\..\\3dModels\\TrenLvl2.obj");
-	std::cout << "Carga del tren de nivel 2" << std::endl;
-
-	// Carga del modelo 'TrenLvl3' (tren del nivel 3)
-	loaderLvl3 = new ModelLoader();
-	loaderLvl3->LoadModel("..\\..\\3dModels\\TrenLvl3.obj");
-	std::cout << "Carga del tren de nivel 3" << std::endl;
-
+	loaderVias->LoadModel("..\\..\\3dModels\\Vias.obj");
+	std::cout << "- Carga de modelo - Vias" << std::endl;
 	// Carga del modelo 'Cop' (Jugador)
 	loaderPersonaje = new ModelLoader();
 	loaderPersonaje->LoadModel("..\\..\\3dModels\\Cop.obj");
-
-	// Carga del modelo 'Bolt' (PowerUP)
-	loaderPower = new ModelLoader();
-	loaderPower->LoadModel("..\\..\\3dModels\\Bolt.obj");
+	std::cout << "- Carga de modelo - Jugador" << std::endl;
 }
 
-void Scene::Update(const float &timeIncrement)
+void Scene::Update(const float& timeIncrement)
 {
 	this->camera.Update(timeIncrement);
 
@@ -85,6 +67,30 @@ void Scene::Update(const float &timeIncrement)
 	{
 		this->gameObjects[idx]->Update(timeIncrement);
 	}
+}
+
+void Scene::LoadModelNvl1()
+{
+	// Carga del modelo 'TrenLvl1' (tren del nivel 1)
+	loaderTren = new ModelLoader();
+	loaderTren->LoadModel("..\\..\\3dModels\\TrenLvl1.obj");
+	std::cout << "- Carga de modelo - Tren de nivel 1" << std::endl;
+}
+
+void Scene::LoadModelNvl2()
+{
+	// Carga del modelo 'TrenLvl2' (tren del nivel 2)
+	loaderTren = new ModelLoader();
+	loaderTren->LoadModel("..\\..\\3dModels\\TrenLvl2.obj");
+	std::cout << "- Carga de modelo - Tren de nivel 2" << std::endl;
+}
+
+void Scene::LoadModelNvl3()
+{
+	// Carga del modelo 'TrenLvl3' (tren del nivel 3)
+	loaderTren = new ModelLoader();
+	loaderTren->LoadModel("..\\..\\3dModels\\TrenLvl3.obj");
+	std::cout << "- Carga de modelo - Tren de nivel 3" << std::endl;
 }
 
 void Scene::Render()
@@ -97,25 +103,13 @@ void Scene::Render()
 	}
 }
 
-void Scene::ProcessKeyPressed(unsigned char key, int px, int py)
-{
-	// cout << "Tecla pulsada: " << x << ", " << y << endl;
-	jugador->ProcessKeyPressed(key,px,py);
-}
+void Scene::ProcessKeyPressed(unsigned char key, int px, int py) {}
 
-void Scene::ProcessMouseMovement(int x, int y)
-{
-	// cout << "Movimiento del mouse: " << x << ", " << y << endl;
-}
+void Scene::ProcessMouseMovement(int x, int y) {}
 
-void Scene::ProcessMouseClick(int button, int state, int x, int y)
-{
-	// cout << "Clic del mouse: " << button << " " << state << " " << x << " " << y << endl;
-}
+void Scene::ProcessMouseClick(int button, int state, int x, int y) {}
 
-void Scene::Reset()
-{
-}
+void Scene::Reset() {}
 
 int Scene::CheckStatus()
 {

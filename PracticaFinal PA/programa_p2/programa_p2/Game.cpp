@@ -68,7 +68,7 @@ void Game::Init()
 	sceneOverLoser->Init();
 	this->scenes.push_back(sceneOverLoser);
 
-	std::cout << "Escenas cargadas: "<< scenes.size() << std::endl;
+	std::cout << std::endl << "Escenas cargadas: " << scenes.size() << std::endl;
 	this->activeScene = this->scenes[0];
 }
 

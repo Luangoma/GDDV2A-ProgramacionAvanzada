@@ -3,9 +3,9 @@
 
 void SceneMenu::Init()
 {
-	Scene::Init();
+	std::cout << std::endl << "Carga de escena - Menu" << std::endl;
 
-	std::cout << "Carga de la escena menu" << std::endl << std::endl;
+	Scene::Init();
 
 	// // // // Menu inicial
 	SetDrawVertexes(false);
@@ -18,7 +18,6 @@ void SceneMenu::Init()
 	camara->SetOrientation(Vector3D(15.0, 135.0, 0.0));
 	SetCamera(*camara);
 
-	// // // MENU
 	desplazamiento = 0.0;
 	incremento = 5.0;			// Definido en scene.h
 	for (int i = 0; i < 3; i++) // Creamos las vias y las anadimos
@@ -27,45 +26,47 @@ void SceneMenu::Init()
 		*via = loaderVias->GetModel();
 		via->SetPosition(Vector3D(via->GetPosition().GetX() + 50, via->GetPosition().GetY(), via->GetPosition().GetZ() + desplazamiento));
 		via->PaintColor(Color(0.3, 0.3, 0.3));
-		AddVia(via);
 		desplazamiento += incremento;
-		AddGameObject(vias[i]);
+		AddGameObject(via);
 	}
+
+	LoadModelNvl1();
 	obstaculo = new Obstacle(
-		loaderLvl1->GetModel(),		// Modelo
+		loaderTren->GetModel(),		// Modelo
 		Vector3D(15.0, 1.7, 0.0),	// Posicion
 		Vector3D(0.0, 0.0, 0.0),	// Rotacion
 		Vector3D(37.1, 3.58, 2.87), // Dimensiones
 		Color(0.1, 0.1, 0.1),		// Color
 		0.0);						// Velocidad
 	AddObstaculo(obstaculo);
-	AddGameObject(obstaculo);
+
+	LoadModelNvl2();
 	obstaculo = new Obstacle(
-		loaderLvl2->GetModel(),		// Modelo
+		loaderTren->GetModel(),		// Modelo
 		Vector3D(25.0, 1.1, 5.0),	// Posicion
 		Vector3D(0.0, 0.0, 0.0),	// Rotacion
 		Vector3D(66.7, 2.72, 2.25), // Dimensiones
 		Color(0.73, 0.56, 0.1),		// Color
 		0.0);						// Velocidad
 	AddObstaculo(obstaculo);
-	AddGameObject(obstaculo);
+
+	LoadModelNvl3();
 	obstaculo = new Obstacle(
-		loaderLvl3->GetModel(),		// Modelo
-		Vector3D(30, 1.0, 10.0),	// Posicion
-		Vector3D(0.0, 0.0, 0.0),	// Rotacion
-		Vector3D(90.5, 1.9, 2.03),  // Dimensiones
-		Color(0.4, 0.4, 0.4),		// Color
-		0.0);						// Velocidad
+		loaderTren->GetModel(),	   // Modelo
+		Vector3D(30, 1.0, 10.0),   // Posicion
+		Vector3D(0.0, 0.0, 0.0),   // Rotacion
+		Vector3D(90.5, 1.9, 2.03), // Dimensiones
+		Color(0.4, 0.4, 0.4),	   // Color
+		0.0);					   // Velocidad
 	AddObstaculo(obstaculo);
-	AddGameObject(obstaculo);
-	
+
 	// Personaje
-	jugador = new Player(loaderPersonaje->GetModel(), 
-		Vector3D(-15, 0.5, -5), 
-		Vector3D(0.0, 160.0, 0.0));
+	jugador = new Player(loaderPersonaje->GetModel(),
+						 Vector3D(-15, 0.5, -5),
+						 Vector3D(0.0, 160.0, 0.0));
 	AddGameObject(jugador);
 
-	// TEXTO
+	// Texto
 	desplazamiento = -1;
 	Text *texto = new Text();
 	texto->SetText("ESCAPE THE TRAIN");
@@ -110,8 +111,4 @@ void SceneMenu::Init()
 	cielo->SetHeight(GetBoundary().GetY());
 	cielo->SetWidth(0.2);
 	AddGameObject(cielo);
-}
-void SceneMenu::ProcessKeyPressed(unsigned char key, int px, int py)
-{
-	//Scene::ProcessKeyPressed(key,px,py);
 }

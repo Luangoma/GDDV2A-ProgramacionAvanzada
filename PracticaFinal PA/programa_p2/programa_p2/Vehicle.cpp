@@ -1,12 +1,11 @@
 #include "Vehicle.h"
 
-
 void Vehicle::Render()
 {
 	model.Render();
 }
 
-void Vehicle::Update(const float& timeIncrement)
+void Vehicle::Update(const float &timeIncrement)
 {
 	SetPosition(model.GetPosition());
 	SetOrientation(model.GetOrientation());
@@ -22,23 +21,23 @@ void Vehicle::Reset()
 
 Vector3D Vehicle::GetDimensions()
 {
-	Vector3D* dimensiones = new Vector3D(dimensions);
-	if (GetOrientation().GetY() == 180.0)		// FRENTE / S
+	Vector3D *dimensiones = new Vector3D(dimensions);
+	if (GetOrientation().GetY() == 180.0) // FRENTE / S
 	{
 		dimensiones->SetZ(dimensiones->GetZ());
 		dimensiones->SetX(dimensiones->GetX());
 	}
-	else if (GetOrientation().GetY() == 0.0)	// ATRAS / S
+	else if (GetOrientation().GetY() == 0.0) // ATRAS / S
 	{
 		dimensiones->SetZ(dimensiones->GetZ());
 		dimensiones->SetX(dimensiones->GetX());
 	}
-	else if (GetOrientation().GetY() == 270.0)	// IZQUIERDA / A
+	else if (GetOrientation().GetY() == 270.0) // IZQUIERDA / A
 	{
 		dimensiones->SetZ(dimensiones->GetX());
 		dimensiones->SetX(dimensiones->GetZ());
 	}
-	else if (GetOrientation().GetY() == 90.0)	// DERECHA / D
+	else if (GetOrientation().GetY() == 90.0) // DERECHA / D
 	{
 		dimensiones->SetZ(dimensiones->GetX());
 		dimensiones->SetX(dimensiones->GetZ());
@@ -48,15 +47,15 @@ Vector3D Vehicle::GetDimensions()
 
 void Vehicle::ActivarRalenti()
 {
-	SetActualSpeed(GetActualSpeed()/2);
+	SetActualSpeed(GetActualSpeed() / 2);
 	model.SetSpeed(Vector3D(
-		model.GetSpeed().GetX()/2,
-		model.GetSpeed().GetY()/2,
-		model.GetSpeed().GetZ()/2));
+		model.GetSpeed().GetX() / 2,
+		model.GetSpeed().GetY() / 2,
+		model.GetSpeed().GetZ() / 2));
 }
 
 void Vehicle::ActivarAccelere()
-{	
+{
 	SetActualSpeed(GetActualSpeed() * 2);
 	model.SetSpeed(Vector3D(
 		model.GetSpeed().GetX() * 2,
@@ -68,5 +67,5 @@ void Vehicle::ActivarNormal()
 {
 	SetActualSpeed(GetInitialSpeed());
 	model.SetSpeed(Vector3D(
-		GetInitialSpeed(),0,0));
+		GetInitialSpeed(), 0, 0));
 }

@@ -1,6 +1,6 @@
 #include "Ralenti.h"
 
-void Ralenti::ApplyEffect() 
+void Ralenti::ApplyEffect()
 {
 	if (GetStatus())
 	{

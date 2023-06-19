@@ -17,12 +17,12 @@ public:
 			 Color colorToSet = Color(0.0, 0.0, 0.0),
 			 float speedToSet = 0.0)
 		: Vehicle(
-			modelToSet,
-			positionToSet,
-			orientationToSet,
-			dimensions,
-			colorToSet,
-			speedToSet)
+			  modelToSet,
+			  positionToSet,
+			  orientationToSet,
+			  dimensions,
+			  colorToSet,
+			  speedToSet)
 	{}
 
 	// Metodos virtuales de Solid y otros

@@ -3,8 +3,8 @@
 
 void SceneGameOver::Init()
 {
-    std::cout << "Carga de la escena resultado" << std::endl << std::endl;
-    
+    std::cout << std::endl << "Carga de escena - Resultado" << std::endl;
+
     // CAMARA
     Camera *camara = new Camera();
     camara->SetPosition(Vector3D(0.0, 0.0, 0.0));
@@ -37,10 +37,4 @@ void SceneGameOver::Init()
     }
 }
 
-void SceneGameOver::Update(const float &timeIncrement)
-{
-}
-
-void SceneGameOver::ProcessKeyPressed(unsigned char key, int px, int py)
-{
-}
+void SceneGameOver::Update(const float &timeIncrement) {}

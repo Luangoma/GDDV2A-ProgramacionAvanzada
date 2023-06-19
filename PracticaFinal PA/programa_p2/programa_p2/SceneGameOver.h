@@ -1,6 +1,5 @@
 #pragma once
 #include "Scene.h"
-#include <vector>
 class SceneGameOver : public Scene
 {
 private:
@@ -12,5 +11,4 @@ public:
 
     void Init();
     void Update(const float &timeIncrement);
-    void ProcessKeyPressed(unsigned char key, int px, int py);
 };

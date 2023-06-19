@@ -6,11 +6,10 @@ class SceneMenu : public Scene
 {
 private:
     Cuboid *cielo;
-    vector<Text*> titulos;
+    vector<Text *> titulos;
 
 public:
     SceneMenu() : Scene() {}
 
     void Init();
-    void ProcessKeyPressed(unsigned char key, int px, int py);
 };

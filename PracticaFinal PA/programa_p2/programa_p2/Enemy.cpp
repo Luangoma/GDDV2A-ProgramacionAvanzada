@@ -8,7 +8,6 @@ void Enemy::Update(const float &timeIncrement)
 
 void Enemy::TrackPlayer()
 {
-
 	// La x, y & z del personaje estan en su centro, menos la z que esta en el suelo.
 	// Se debe calcular la rotacion para un seguimiento correcto.
 	// Cuando el personaje rota, las dimensiones se intercambian entre los ejes X y Z.
